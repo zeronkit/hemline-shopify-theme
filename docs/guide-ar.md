@@ -635,6 +635,7 @@
 
 [![صفحة البحث قبل الكتابة، مع عمليات البحث الشائعة و New in.](images/search-page-start-ar.jpg)](images/search-page-start-ar.jpg)
 
+[![نافذة البحث المفتوحة من الترويسة، مع اقتراحات منتجات لكلمة "dress".](images/search-overlay-ar.jpg)](images/search-overlay-ar.jpg)
 
 [![نتائج كلمة dress مع التبويبات والتصفية والترتيب.](images/sf-search-results-ar.jpg)](images/sf-search-results-ar.jpg)
 
@@ -858,11 +859,13 @@
 3. يستخدم خطًا يدعم الحروف العربية عندما لا يحتوي الخط المختار عليها. أو اختر `Style` > `Font pairing` > `Arabic friendly`.
 
 
+[![درج السلة بالعربية، ويُفتح من الجهة اليسرى.](images/sf-ar-cart-ar.jpg)](images/sf-ar-cart-ar.jpg)
 
 ### 11.4 أسماء الألوان في اللغات الأخرى
 
 عندما يترجم Translate & Adapt قيم الخيارات، تبقى عينات الألوان تعرض اللون الصحيح. يعرف Hemline كلمات الألوان الشائعة بالعربية والفرنسية والإسبانية والألمانية. وللحصول على ألوان دقيقة، اضبط لون العينة على قيمة الخيار في لوحة الإدارة، فهو يعمل في كل اللغات.
 
+[![صفحة منتج بالعربية، من اليمين إلى اليسار.](images/product-arabic-ar.jpg)](images/product-arabic-ar.jpg)
 
 ---
 

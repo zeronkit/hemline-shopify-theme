@@ -631,6 +631,7 @@ Popular searches are set in `Theme settings` > `Search`.
 
 [![The search page before typing, with popular searches and New in.](images/search-page-start-en.jpg)](images/search-page-start-en.jpg)
 
+[![The search window opened from the header, with product suggestions for "dress".](images/search-overlay-en.jpg)](images/search-overlay-en.jpg)
 
 [![Results for dress with tabs, filters and sorting.](images/sf-search-results-en.jpg)](images/sf-search-results-en.jpg)
 
@@ -854,11 +855,13 @@ For Arabic, Hebrew, Persian and Urdu, Hemline:
 3. Uses an Arabic-capable font for Arabic letters when the chosen font has none. Or choose `Style` > `Font pairing` > `Arabic friendly`.
 
 
+[![The cart drawer in Arabic, opening from the left side.](images/sf-ar-cart-en.jpg)](images/sf-ar-cart-en.jpg)
 
 ### 11.4 Colour names in other languages
 
 When Translate & Adapt translates option values, colour swatches still show the right colour. Hemline maps common colour words in Arabic, French, Spanish and German. For exact colours, set the swatch colour on the option value in Shopify admin: it works in every language.
 
+[![A product page in Arabic, right to left.](images/product-arabic-en.jpg)](images/product-arabic-en.jpg)
 
 ---
 
