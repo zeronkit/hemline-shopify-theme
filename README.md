@@ -7,7 +7,7 @@
 <p align="center">
 <a href="docs/guide.md"><img alt="Read the full guide in English" src="https://img.shields.io/badge/Full%20guide-English-ff7a52?style=for-the-badge"></a>
 &nbsp;
-<a href="docs/guide-ar.md"><img alt="Read the full guide in Arabic" src="https://img.shields.io/badge/%D8%A7%D9%84%D8%B4%D8%B1%D8%AD%20%D8%A7%D9%84%D9%83%D8%A7%D9%85%D9%84-%D8%A7%D9%84%D8%B9%D8%B1%D8%A8%D9%8A%D8%A9-121110?style=for-the-badge"></a>
+<a href="docs/guide-ar.md"><img alt="Read the full guide in Arabic" src="https://img.shields.io/badge/Full%20guide-Arabic-ff7a52?style=for-the-badge"></a>
 &nbsp;
 <a href="https://github.com/zeronkit/hemline-shopify-theme/releases/latest/download/hemline-1.1.0.zip"><img alt="Download Hemline" src="https://img.shields.io/badge/Download-hemline--1.1.0.zip-2ea043?style=for-the-badge"></a>
 </p>
