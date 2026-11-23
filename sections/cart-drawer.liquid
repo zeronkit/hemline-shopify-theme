@@ -1,0 +1,33 @@
+{%- comment -%} Hemline theme by ZeronKit (https://zeronkit.com). Free theme - not for resale or redistribution. © 2026 ZeronKit. {%- endcomment -%}
+{%- assign form_id = 'CartForm-drawer' -%}
+<dialog class="hm-drawer hm-drawer--cart color-{{ settings.drawer_scheme }}" id="CartDrawer" aria-labelledby="CartDrawerTitle">
+  <hm-cart class="hm-drawer__cart" data-section-id="cart-drawer">
+    <div class="hm-drawer__head">
+      <h2 class="hm-h4" id="CartDrawerTitle">{{ 'cart.title' | t }}</h2>
+      <button type="button" class="hm-icon-button" data-hm-close aria-label="{{ 'general.close' | t }}">{% render 'icon', name: 'close' %}</button>
+    </div>
+    <div class="hm-drawer__content" data-hm-cart-content data-count="{{ cart.item_count }}" data-count-label="{{ 'cart.title_with_count' | t: count: cart.item_count }}">
+      {%- if cart.item_count > 0 -%}
+        <form action="{{ routes.cart_url }}" method="post" id="{{ form_id }}" class="hm-drawer__body" novalidate>
+          {% render 'cart-lines', section_id: 'drawer' %}
+        </form>
+        <div class="hm-drawer__foot">
+          {% render 'cart-summary', form_id: form_id, show_note: false %}
+          <a class="hm-link-button" href="{{ routes.cart_url }}">{{ 'cart.view' | t }}</a>
+        </div>
+      {%- else -%}
+        <div class="hm-drawer__body hm-empty">
+          <p class="hm-h4">{{ 'cart.empty' | t }}</p>
+          <a class="hm-button hm-button--primary" href="{{ routes.all_products_collection_url }}">{{ 'cart.continue' | t }}</a>
+        </div>
+      {%- endif -%}
+    </div>
+  </hm-cart>
+</dialog>
+
+{% schema %}
+{
+  "name": "t:names.cart_drawer",
+  "settings": []
+}
+{% endschema %}

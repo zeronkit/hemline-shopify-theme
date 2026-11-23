@@ -1,0 +1,393 @@
+{%- comment -%} Hemline theme by ZeronKit (https://zeronkit.com). Free theme - not for resale or redistribution. © 2026 ZeronKit. {%- endcomment -%}
+{%- liquid
+  assign variant = product.selected_or_first_available_variant
+  assign model_lines = product.metafields.hemline.model_info.value | newline_to_br | split: '<br />'
+  assign materials_heading = 'products.tabs.materials' | t
+  assign care_heading = 'products.tabs.care' | t
+  # Description sections that have their own tab are moved out of the main description.
+  assign moved = ''
+  for tab in section.blocks
+    if tab.type == 'collapsible'
+    assign tab_source = tab.settings.source | default: 'auto'
+    if tab_source == 'auto'
+      assign tab_heading = tab.settings.heading | downcase
+      assign tab_source = 'custom'
+      if tab_heading contains 'ship' or tab_heading contains 'return' or tab_heading contains 'deliver'
+        assign tab_source = 'shipping'
+      elsif tab_heading contains 'material' or tab_heading contains 'care' or tab_heading contains 'fabric'
+        assign tab_source = 'materials'
+      elsif tab_heading contains 'fit' or tab_heading contains 'size'
+        assign tab_source = 'fit'
+      endif
+    endif
+      if tab_source == 'materials'
+        assign moved = moved | append: 'materials,care,'
+      elsif tab_source != 'custom'
+        assign moved = moved | append: tab_source | append: ','
+      endif
+    endif
+  endfor
+-%}
+<section class="hm-product color-{{ section.settings.color_scheme }} hm-section" aria-label="{{ product.title | escape }}">
+  <hm-product
+    class="hm-wrap hm-product__grid hm-product__grid--{{ section.settings.gallery_layout }}"
+    data-section-id="{{ section.id }}"
+    data-url="{{ product.url }}"
+  >
+    {% render 'product-gallery', product: product, variant: variant, section_id: section.id, layout: section.settings.gallery_layout, colour_filter: section.settings.colour_gallery %}
+
+    <div class="hm-product__info{% if section.settings.sticky_info %} hm-product__info--sticky{% endif %}">
+      {%- for block in section.blocks -%}
+        {%- case block.type -%}
+          {%- when '@app' -%}
+            {% render block %}
+
+          {%- when 'text' -%}
+            <div class="hm-product__text hm-text--{{ block.settings.style }}" {{ block.shopify_attributes }}>{{ block.settings.text }}</div>
+
+          {%- when 'title' -%}
+            <div class="hm-product__title" {{ block.shopify_attributes }}>
+              {%- if block.settings.show_vendor -%}
+                <p class="hm-eyebrow">{{ product.vendor | escape }}</p>
+              {%- endif -%}
+              <h1 class="hm-h2">{{ product.title | escape }}</h1>
+            </div>
+
+          {%- when 'price' -%}
+            <div class="hm-product__price" data-hm-swap="price-{{ block.id }}" {{ block.shopify_attributes }}>
+              {% render 'price', product: product, variant: variant, class: 'hm-price--large' %}
+              {%- if cart.taxes_included or shop.shipping_policy.body != blank -%}
+                <p class="hm-small hm-muted">
+                  {%- if cart.taxes_included -%}{{ 'products.tax_included' | t }}{% endif %}
+                  {%- if shop.shipping_policy.body != blank %} {{ 'products.shipping_policy_html' | t: link: shop.shipping_policy.url }}{% endif -%}
+                </p>
+              {%- endif -%}
+            </div>
+
+          {%- when 'variant_picker' -%}
+            <div data-hm-swap="picker-{{ block.id }}" data-variant-id="{{ variant.id }}" data-variant-media="{{ variant.featured_media.id }}" {{ block.shopify_attributes }}>
+              {% render 'variant-picker', product: product, section_id: section.id, style: block.settings.style %}
+            </div>
+
+          {%- when 'fit' -%}
+            {%- liquid
+              assign guide_page = product.metafields.hemline.size_guide.value | default: block.settings.size_guide_page
+              if guide_page == blank and pages['size-guide'].title != blank
+                assign guide_page = pages['size-guide']
+              endif
+              assign fit = product.metafields.hemline.fit.value | downcase | strip
+            -%}
+            <div class="hm-fit" {{ block.shopify_attributes }}>
+              {%- if fit == 'runs_small' or fit == 'true_to_size' or fit == 'runs_large' -%}
+                <div class="hm-fit__scale">
+                  <p class="hm-field__label">{{ 'products.fit.title' | t }}</p>
+                  <ol class="hm-fit__track" role="list">
+                    <li{% if fit == 'runs_small' %} class="is-active" aria-current="true"{% endif %}>{{ 'products.fit.runs_small' | t }}</li>
+                    <li{% if fit == 'true_to_size' %} class="is-active" aria-current="true"{% endif %}>{{ 'products.fit.true_to_size' | t }}</li>
+                    <li{% if fit == 'runs_large' %} class="is-active" aria-current="true"{% endif %}>{{ 'products.fit.runs_large' | t }}</li>
+                  </ol>
+                </div>
+              {%- endif -%}
+              {%- if block.settings.model_note != blank or model_lines.first != blank -%}
+                <p class="hm-fit__model hm-small">
+                  {{ model_lines.first | strip | default: block.settings.model_note | escape }}
+                </p>
+              {%- endif -%}
+              {%- if guide_page != blank -%}
+                <button type="button" class="hm-link-button" data-hm-open="SizeGuide-{{ section.id }}" aria-haspopup="dialog">
+                  {% render 'icon', name: 'ruler' %} {{ 'products.fit.size_guide' | t }}
+                </button>
+                <dialog class="hm-drawer color-{{ section.settings.color_scheme }}" id="SizeGuide-{{ section.id }}" aria-labelledby="SizeGuideTitle-{{ section.id }}">
+                  <div class="hm-drawer__head">
+                    <h2 class="hm-h4" id="SizeGuideTitle-{{ section.id }}">{{ guide_page.title | escape }}</h2>
+                    <button type="button" class="hm-icon-button" data-hm-close aria-label="{{ 'general.close' | t }}">{% render 'icon', name: 'close' %}</button>
+                  </div>
+                  <div class="hm-drawer__body hm-rte">{{ guide_page.content }}</div>
+                </dialog>
+              {%- endif -%}
+            </div>
+
+          {%- when 'buy_buttons' -%}
+            <div data-hm-swap="buy-{{ block.id }}" {{ block.shopify_attributes }}>
+              {% render 'buy-form',
+                product: product,
+                variant: variant,
+                section_id: section.id,
+                show_checkout: block.settings.show_dynamic_checkout,
+                show_pickup: block.settings.show_pickup,
+                show_quantity: block.settings.show_quantity
+              %}
+            </div>
+
+          {%- when 'description' -%}
+            {%- capture main_description -%}{% render 'description-part', description: product.description, want: 'main', moved: moved %}{%- endcapture -%}
+            {%- if main_description != blank -%}
+              <div class="hm-rte hm-product__description" {{ block.shopify_attributes }}>{{ main_description }}</div>
+            {%- endif -%}
+
+          {%- when 'collapsible' -%}
+            {%- liquid
+              assign tab_source = block.settings.source | default: 'auto'
+    if tab_source == 'auto'
+      assign tab_heading = block.settings.heading | downcase
+      assign tab_source = 'custom'
+      if tab_heading contains 'ship' or tab_heading contains 'return' or tab_heading contains 'deliver'
+        assign tab_source = 'shipping'
+      elsif tab_heading contains 'material' or tab_heading contains 'care' or tab_heading contains 'fabric'
+        assign tab_source = 'materials'
+      elsif tab_heading contains 'fit' or tab_heading contains 'size'
+        assign tab_source = 'fit'
+      endif
+    endif
+              # Preference: product metafields, then the matching description section, then the block text, then a translated default.
+              capture tab_body
+                case tab_source
+                  when 'materials'
+                    assign materials_field = product.metafields.hemline.materials | default: product.metafields.custom.material
+                    assign care_field = product.metafields.hemline.care
+                    if materials_field != blank or care_field != blank
+                      if materials_field != blank
+                        echo materials_field | metafield_tag
+                      endif
+                      if care_field != blank
+                        echo '<h4>' | append: care_heading | append: '</h4>'
+                        echo care_field | metafield_tag
+                      endif
+                    else
+                      capture from_materials
+                        render 'description-part', description: product.description, want: 'materials'
+                      endcapture
+                      capture from_care
+                        render 'description-part', description: product.description, want: 'care'
+                      endcapture
+                      if from_materials != blank or from_care != blank
+                        if from_materials != blank
+                          echo '<h4>' | append: materials_heading | append: '</h4>' | append: from_materials
+                        endif
+                        if from_care != blank
+                          echo '<h4>' | append: care_heading | append: '</h4>' | append: from_care
+                        endif
+                      elsif block.settings.content != blank
+                        echo block.settings.content
+                      else
+                        echo 'products.tabs.materials_default_html' | t
+                      endif
+                    endif
+                  when 'shipping'
+                    capture from_shipping
+                      render 'description-part', description: product.description, want: 'shipping'
+                    endcapture
+                    if block.settings.content != blank
+                      echo block.settings.content
+                    elsif from_shipping != blank
+                      echo from_shipping
+                    else
+                      echo 'products.tabs.shipping_default_html' | t
+                    endif
+                  when 'fit'
+                    capture from_fit
+                      render 'description-part', description: product.description, want: 'fit'
+                    endcapture
+                    if product.metafields.hemline.fit_notes != blank
+                      echo product.metafields.hemline.fit_notes | metafield_tag
+                    elsif from_fit != blank
+                      echo from_fit
+                    elsif block.settings.content != blank
+                      echo block.settings.content
+                    else
+                      echo 'products.tabs.fit_default_html' | t
+                    endif
+                  else
+                    echo block.settings.content
+                endcase
+                echo block.settings.page.content
+              endcapture
+              assign show_policy_links = false
+              if tab_source == 'shipping'
+                if shop.shipping_policy.body != blank or shop.refund_policy.body != blank
+                  assign show_policy_links = true
+                endif
+              endif
+            -%}
+            {%- if tab_body != blank or show_policy_links -%}
+              <details class="hm-fold" {{ block.shopify_attributes }}>
+                <summary class="hm-fold__summary">
+                  <span>{{ block.settings.heading | escape }}</span>
+                  {% render 'icon', name: 'plus' %}
+                </summary>
+                <div class="hm-fold__body hm-rte">
+                  {{ tab_body }}
+                  {%- if show_policy_links -%}
+                    <ul class="hm-fold__links" role="list">
+                      {%- if shop.shipping_policy.body != blank -%}<li><a href="{{ shop.shipping_policy.url }}">{{ 'products.tabs.shipping_policy' | t }}</a></li>{%- endif -%}
+                      {%- if shop.refund_policy.body != blank -%}<li><a href="{{ shop.refund_policy.url }}">{{ 'products.tabs.refund_policy' | t }}</a></li>{%- endif -%}
+                    </ul>
+                  {%- endif -%}
+                </div>
+              </details>
+            {%- endif -%}
+
+          {%- when 'complementary' -%}
+            <hm-recommendations
+              class="hm-complementary"
+              data-url="{{ routes.product_recommendations_url }}?section_id={{ section.id }}&product_id={{ product.id }}&limit={{ block.settings.limit }}&intent=complementary"
+              data-block="{{ block.id }}"
+              {{ block.shopify_attributes }}
+            >
+              {%- if recommendations.performed and recommendations.products_count > 0 -%}
+                <h2 class="hm-field__label">{{ block.settings.heading | escape }}</h2>
+                <ul class="hm-mini-list" role="list">
+                  {%- for rec in recommendations.products -%}
+                    <li class="hm-mini">
+                      <a class="hm-mini__link" href="{{ rec.url }}">
+                        {%- if rec.featured_media -%}
+                          {% render 'image', image: rec.featured_media.preview_image, sizes: '96px', max: 200, class: 'hm-mini__img', alt: '' %}
+                        {%- endif -%}
+                        <span class="hm-mini__title">{{ rec.title | escape }}</span>
+                      </a>
+                      {% render 'price', product: rec %}
+                    </li>
+                  {%- endfor -%}
+                </ul>
+              {%- endif -%}
+            </hm-recommendations>
+
+          {%- when 'custom_liquid' -%}
+            <div {{ block.shopify_attributes }}>{{ block.settings.custom_liquid }}</div>
+        {%- endcase -%}
+      {%- endfor -%}
+    </div>
+  </hm-product>
+
+  <script type="application/ld+json">
+    {{ product | structured_data }}
+  </script>
+</section>
+
+{% schema %}
+{
+  "name": "t:names.product_information",
+  "tag": "div",
+  "class": "hm-shopify-section",
+  "settings": [
+    { "type": "color_scheme", "id": "color_scheme", "label": "t:labels.color_scheme", "default": "scheme-1" },
+    {
+      "type": "select",
+      "id": "gallery_layout",
+      "label": "t:labels.gallery_layout",
+      "options": [
+        { "value": "sheet", "label": "t:options.contact_sheet" },
+        { "value": "stack", "label": "t:options.single_column" }
+      ],
+      "default": "sheet"
+    },
+    { "type": "checkbox", "id": "sticky_info", "label": "t:labels.sticky_info", "default": true },
+    { "type": "checkbox", "id": "colour_gallery", "label": "t:labels.colour_gallery", "default": true, "info": "t:info.colour_gallery" },
+    { "type": "paragraph", "content": "t:info.model_info_metafield" }
+  ],
+  "blocks": [
+    { "type": "@app" },
+    {
+      "type": "text",
+      "name": "t:names.text",
+      "settings": [
+        { "type": "inline_richtext", "id": "text", "label": "t:labels.text", "default": "Questions about sizing? Contact us before you order." },
+        {
+          "type": "select",
+          "id": "style",
+          "label": "t:labels.style",
+          "options": [
+            { "value": "body", "label": "t:options.body" },
+            { "value": "small", "label": "t:options.small" },
+            { "value": "eyebrow", "label": "t:options.eyebrow" }
+          ],
+          "default": "small"
+        }
+      ]
+    },
+    {
+      "type": "title",
+      "name": "t:names.title",
+      "limit": 1,
+      "settings": [{ "type": "checkbox", "id": "show_vendor", "label": "t:labels.show_vendor", "default": false }]
+    },
+    { "type": "price", "name": "t:names.price", "limit": 1 },
+    {
+      "type": "variant_picker",
+      "name": "t:names.variant_picker",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "select",
+          "id": "style",
+          "label": "t:labels.style",
+          "options": [
+            { "value": "chips", "label": "t:options.chips" },
+            { "value": "dropdown", "label": "t:options.dropdown" }
+          ],
+          "default": "chips"
+        },
+        { "type": "paragraph", "content": "t:info.swatches" }
+      ]
+    },
+    {
+      "type": "fit",
+      "name": "t:names.fit",
+      "limit": 1,
+      "settings": [
+        { "type": "page", "id": "size_guide_page", "label": "t:labels.size_guide_page", "info": "t:info.size_guide" },
+        { "type": "text", "id": "model_note", "label": "t:labels.model_note", "info": "t:info.model_note" }
+      ]
+    },
+    {
+      "type": "buy_buttons",
+      "name": "t:names.buy_buttons",
+      "limit": 1,
+      "settings": [
+        { "type": "checkbox", "id": "show_quantity", "label": "t:labels.show_quantity", "default": true },
+        { "type": "checkbox", "id": "show_dynamic_checkout", "label": "t:labels.show_dynamic_checkout", "default": true, "info": "t:info.dynamic_checkout" },
+        { "type": "checkbox", "id": "show_pickup", "label": "t:labels.show_pickup", "default": true }
+      ]
+    },
+    { "type": "description", "name": "t:names.description", "limit": 1 },
+    {
+      "type": "collapsible",
+      "name": "t:names.collapsible",
+      "settings": [
+        { "type": "text", "id": "heading", "label": "t:labels.heading", "default": "Materials and care" },
+        {
+          "type": "select",
+          "id": "source",
+          "label": "t:labels.tab_source",
+          "info": "t:info.tab_source",
+          "options": [
+            { "value": "auto", "label": "t:options.auto_from_heading" },
+            { "value": "materials", "label": "t:options.tab_materials" },
+            { "value": "shipping", "label": "t:options.tab_shipping" },
+            { "value": "fit", "label": "t:options.tab_fit" },
+            { "value": "custom", "label": "t:options.tab_custom" }
+          ],
+          "default": "auto"
+        },
+        { "type": "richtext", "id": "content", "label": "t:labels.content", "info": "t:info.tab_content" },
+        { "type": "page", "id": "page", "label": "t:labels.page_content" }
+      ]
+    },
+    {
+      "type": "complementary",
+      "name": "t:names.complementary",
+      "limit": 1,
+      "settings": [
+        { "type": "paragraph", "content": "t:info.complementary" },
+        { "type": "text", "id": "heading", "label": "t:labels.heading", "default": "Wear it with" },
+        { "type": "range", "id": "limit", "label": "t:labels.products_to_show", "min": 1, "max": 6, "step": 1, "default": 3 }
+      ]
+    },
+    {
+      "type": "custom_liquid",
+      "name": "t:names.custom_liquid",
+      "settings": [{ "type": "liquid", "id": "custom_liquid", "label": "t:labels.custom_liquid" }]
+    }
+  ]
+}
+{% endschema %}

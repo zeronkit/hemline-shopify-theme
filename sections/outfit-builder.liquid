@@ -1,0 +1,212 @@
+{%- comment -%} Hemline theme by ZeronKit (https://zeronkit.com). Free theme - not for resale or redistribution. © 2026 ZeronKit. {%- endcomment -%}
+{%- comment -%}
+  Outfit Builder: one row per slot (top, bottom, shoes...). The shopper picks a piece
+  and a size per slot, sees the running total and adds the whole look in one request.
+{%- endcomment -%}
+{%- liquid
+  assign has_products = false
+  if collections.all.products_count > 0
+    assign has_products = true
+  endif
+  for block in section.blocks
+    if block.settings.products.size > 0
+      assign has_products = true
+    endif
+  endfor
+-%}
+{%- if has_products or request.design_mode -%}
+  <section class="hm-section hm-outfit-section color-{{ section.settings.color_scheme }}" aria-labelledby="OutfitTitle-{{ section.id }}">
+    <hm-outfit class="hm-wrap hm-outfit" data-currency="{{ cart.currency.iso_code }}">
+      <div class="hm-section__head hm-section__head--stack">
+        {%- if section.settings.eyebrow != blank -%}<p class="hm-eyebrow">{{ section.settings.eyebrow | escape }}</p>{%- endif -%}
+        <h2 class="hm-h2" id="OutfitTitle-{{ section.id }}">{{ section.settings.heading | escape }}</h2>
+        {%- if section.settings.text != blank -%}<div class="hm-rte hm-muted">{{ section.settings.text }}</div>{%- endif -%}
+      </div>
+
+      <div class="hm-outfit__board">
+        <ol class="hm-outfit__slots" role="list">
+          {%- for block in section.blocks -%}
+            {%- assign slot_id = section.id | append: '-' | append: block.id -%}
+            <li class="hm-outfit__slot" data-hm-slot {{ block.shopify_attributes }}>
+              <fieldset class="hm-outfit__fieldset">
+                <legend class="hm-outfit__legend">
+                  <span class="hm-outfit__num" aria-hidden="true">{{ forloop.index | prepend: '0' | slice: -2, 2 }}</span>
+                  {{ block.settings.label | escape }}
+                </legend>
+                {%- comment -%}
+                  Products picked by the merchant always win. Without them the slot fills itself from the
+                  store: products whose type, tags or title match the slot label, then any available products.
+                {%- endcomment -%}
+                {%- liquid
+                  assign explicit = false
+                  assign source = block.settings.products
+                  if source.size > 0
+                    assign explicit = true
+                  else
+                    assign source = collections.all.products
+                  endif
+                  assign label = block.settings.label | downcase
+                  assign keywords = label | split: ' '
+                  if label contains 'top' or label contains 'shirt' or label contains 'knit'
+                    assign keywords = 'top,shirt,blouse,tee,knit,sweater,hoodie,jacket,blazer,coat' | split: ','
+                  elsif label contains 'bottom' or label contains 'trouser' or label contains 'pant'
+                    assign keywords = 'bottom,jean,trouser,pant,skirt,short,legging' | split: ','
+                  elsif label contains 'shoe' or label contains 'foot'
+                    assign keywords = 'shoe,sneaker,trainer,boot,oxford,brogue,flat,pump,heel,sandal,loafer' | split: ','
+                  elsif label contains 'access' or label contains 'bag'
+                    assign keywords = 'accessor,bag,tote,backpack,purse,watch,sunglass,hat,cap,belt,scarf,jewel' | split: ','
+                  elsif label contains 'dress'
+                    assign keywords = 'dress,gown,jumpsuit' | split: ','
+                  endif
+                  assign shown = 0
+                  assign rail = ''
+                  assign variant_boxes = ''
+                  assign slot_offset = forloop.index0 | times: 6
+                -%}
+                {%- for pass in (1..2) -%}
+                  {%- if pass == 2 -%}
+                    {%- if shown > 0 or explicit -%}{%- break -%}{%- endif -%}
+                  {%- endif -%}
+                  {%- liquid
+                    assign skip = 0
+                    if pass == 2 and slot_offset < source.size
+                      assign skip = slot_offset
+                    endif
+                  -%}
+                  {%- for product in source limit: 50 offset: skip -%}
+                    {%- liquid
+                      assign take = explicit
+                      unless explicit
+                        if product.available and shown < 6
+                          if pass == 2
+                            assign take = true
+                          else
+                            assign tag_text = product.tags | join: ' '
+                            assign haystack = product.type | append: ' ' | append: tag_text | append: ' ' | append: product.title | downcase
+                            for word in keywords
+                              if word != blank and haystack contains word
+                                assign take = true
+                                break
+                              endif
+                            endfor
+                          endif
+                        endif
+                      endunless
+                    -%}
+                    {%- if take -%}
+                      {%- assign shown = shown | plus: 1 -%}
+                      {%- assign input_id = slot_id | append: '-' | append: shown -%}
+                      {%- assign select_id = slot_id | append: '-variant-' | append: shown -%}
+                      {%- capture choice -%}
+                        <div class="hm-outfit__choice">
+                          <input class="hm-outfit__input" type="radio" id="{{ input_id }}" name="{{ slot_id }}" value="{{ product.id }}" data-hm-pick{% if shown == 1 %} checked{% endif %}{% unless product.available %} disabled{% endunless %}>
+                          <label class="hm-outfit__pick" for="{{ input_id }}">
+                            <span class="hm-outfit__thumb">
+                              {%- if product.featured_media -%}
+                                {% render 'image', image: product.featured_media.preview_image, sizes: '(min-width: 990px) 160px, 30vw', max: 480, alt: '' %}
+                              {%- endif -%}
+                            </span>
+                            <span class="hm-outfit__name">{{ product.title | escape }}</span>
+                            {% render 'price', product: product %}
+                            {%- unless product.available -%}<span class="hm-badge hm-badge--muted">{{ 'products.sold_out' | t }}</span>{%- endunless -%}
+                          </label>
+                        </div>
+                      {%- endcapture -%}
+                      {%- capture variant_box -%}
+                        <div class="hm-outfit__variant" data-hm-variant-for="{{ product.id }}"{% unless shown == 1 %} hidden{% endunless %}>
+                          {%- if product.has_only_default_variant -%}
+                            <input type="hidden" data-hm-variant value="{{ product.selected_or_first_available_variant.id }}" data-price="{{ product.selected_or_first_available_variant.price }}">
+                          {%- else -%}
+                            {%- assign option_names = product.options | join: ' / ' -%}
+                            <label class="hm-field__label" for="{{ select_id }}">{{ 'sections.outfit.choose' | t: options: option_names, product: product.title }}</label>
+                            <div class="hm-select">
+                              <select id="{{ select_id }}" data-hm-variant>
+                                {%- for variant in product.variants -%}
+                                  <option value="{{ variant.id }}" data-price="{{ variant.price }}"{% unless variant.available %} disabled{% endunless %}{% if variant.id == product.selected_or_first_available_variant.id %} selected{% endif %}>
+                                    {{ variant.title | escape }}{% unless variant.available %} ({{ 'products.sold_out' | t }}){% endunless %}
+                                  </option>
+                                {%- endfor -%}
+                              </select>
+                              {% render 'icon', name: 'down' %}
+                            </div>
+                          {%- endif -%}
+                        </div>
+                      {%- endcapture -%}
+                      {%- assign rail = rail | append: choice -%}
+                      {%- assign variant_boxes = variant_boxes | append: variant_box -%}
+                    {%- endif -%}
+                  {%- endfor -%}
+                {%- endfor -%}
+                {%- if shown > 0 -%}
+                  {%- unless block.settings.required -%}
+                    <label class="hm-outfit__include">
+                      <input type="checkbox" data-hm-include checked>
+                      <span>{{ 'sections.outfit.include' | t: slot: block.settings.label }}</span>
+                    </label>
+                  {%- endunless -%}
+                  <hm-slider class="hm-slider hm-outfit__slider">
+                    <div class="hm-outfit__rail" data-hm-slider-track>{{ rail }}</div>
+                    {% render 'slider-controls', label: block.settings.label %}
+                  </hm-slider>
+                  {{ variant_boxes }}
+                {%- else -%}
+                  <p class="hm-muted hm-small">{{ 'sections.outfit.empty_slot' | t }}</p>
+                {%- endif -%}
+              </fieldset>
+            </li>
+          {%- endfor -%}
+        </ol>
+
+        <aside class="hm-outfit__summary" aria-labelledby="OutfitSummary-{{ section.id }}">
+          <h3 class="hm-h4" id="OutfitSummary-{{ section.id }}">{{ 'sections.outfit.your_look' | t }}</h3>
+          <div class="hm-outfit__collage" data-hm-collage aria-hidden="true"></div>
+          <p class="hm-outfit__total">
+            <span>{{ 'sections.outfit.total' | t }}</span>
+            <output data-hm-total aria-live="polite"></output>
+          </p>
+          <button type="button" class="hm-button hm-button--primary hm-button--full" data-hm-add-look>
+            {{ section.settings.button_label | escape }}
+          </button>
+          <p class="hm-small" role="status" data-hm-outfit-status></p>
+        </aside>
+      </div>
+    </hm-outfit>
+  </section>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "t:names.outfit_builder",
+  "class": "hm-shopify-section",
+  "max_blocks": 5,
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "t:labels.eyebrow", "default": "Outfit builder" },
+    { "type": "text", "id": "heading", "label": "t:labels.heading", "default": "Build the whole look" },
+    { "type": "richtext", "id": "text", "label": "t:labels.text", "default": "<p>Choose one piece per row, pick your sizes and add everything to your cart at once.</p>" },
+    { "type": "text", "id": "button_label", "label": "t:labels.button_label", "default": "Add the look to cart" },
+    { "type": "color_scheme", "id": "color_scheme", "label": "t:labels.color_scheme", "default": "scheme-3" }
+  ],
+  "blocks": [
+    {
+      "type": "slot",
+      "name": "t:names.outfit_slot",
+      "settings": [
+        { "type": "text", "id": "label", "label": "t:labels.slot_label", "default": "Top" },
+        { "type": "product_list", "id": "products", "label": "t:labels.products", "limit": 8 },
+        { "type": "checkbox", "id": "required", "label": "t:labels.slot_required", "default": false, "info": "t:info.slot_required" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:names.outfit_builder",
+      "blocks": [
+        { "type": "slot", "settings": { "label": "Top" } },
+        { "type": "slot", "settings": { "label": "Bottom" } },
+        { "type": "slot", "settings": { "label": "Shoes" } },
+        { "type": "slot", "settings": { "label": "Accessory" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

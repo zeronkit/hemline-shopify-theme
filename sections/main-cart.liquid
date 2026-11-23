@@ -1,0 +1,37 @@
+{%- comment -%} Hemline theme by ZeronKit (https://zeronkit.com). Free theme - not for resale or redistribution. © 2026 ZeronKit. {%- endcomment -%}
+{%- assign form_id = 'CartForm-' | append: section.id -%}
+<section class="hm-section color-{{ section.settings.color_scheme }}">
+  <hm-cart class="hm-wrap hm-cart" data-section-id="{{ section.id }}">
+    <div data-hm-cart-content data-count="{{ cart.item_count }}" data-count-label="{{ 'cart.title_with_count' | t: count: cart.item_count }}">
+      <div class="hm-section__head">
+        <h1 class="hm-h2">{{ 'cart.title' | t }}</h1>
+        <a class="hm-link-button" href="{{ routes.all_products_collection_url }}">{{ 'cart.continue' | t }}</a>
+      </div>
+      {%- if cart.item_count > 0 -%}
+        <div class="hm-cart__grid">
+          <form action="{{ routes.cart_url }}" method="post" id="{{ form_id }}" class="hm-cart__lines" novalidate>
+            {% render 'cart-lines', section_id: section.id %}
+            <noscript><button type="submit" class="hm-button hm-button--ghost" name="update">{{ 'cart.update' | t }}</button></noscript>
+          </form>
+          {% render 'cart-summary', form_id: form_id, show_note: settings.cart_note %}
+        </div>
+      {%- else -%}
+        <div class="hm-empty">
+          <p class="hm-h4">{{ 'cart.empty' | t }}</p>
+          <a class="hm-button hm-button--primary" href="{{ routes.all_products_collection_url }}">{{ 'cart.continue' | t }}</a>
+        </div>
+      {%- endif -%}
+    </div>
+  </hm-cart>
+</section>
+
+{% schema %}
+{
+  "name": "t:names.cart",
+  "class": "hm-shopify-section",
+  "enabled_on": { "templates": ["cart"] },
+  "settings": [
+    { "type": "color_scheme", "id": "color_scheme", "label": "t:labels.color_scheme", "default": "scheme-1" }
+  ]
+}
+{% endschema %}

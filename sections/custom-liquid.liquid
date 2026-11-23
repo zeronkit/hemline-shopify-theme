@@ -1,0 +1,18 @@
+{%- comment -%} Hemline theme by ZeronKit (https://zeronkit.com). Free theme - not for resale or redistribution. © 2026 ZeronKit. {%- endcomment -%}
+<div class="hm-section color-{{ section.settings.color_scheme }}">
+  <div class="hm-wrap">
+    {{ section.settings.custom_liquid }}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "t:names.custom_liquid",
+  "class": "hm-shopify-section",
+  "settings": [
+    { "type": "liquid", "id": "custom_liquid", "label": "t:labels.custom_liquid", "info": "t:info.custom_liquid" },
+    { "type": "color_scheme", "id": "color_scheme", "label": "t:labels.color_scheme", "default": "scheme-1" }
+  ],
+  "presets": [{ "name": "t:names.custom_liquid" }]
+}
+{% endschema %}

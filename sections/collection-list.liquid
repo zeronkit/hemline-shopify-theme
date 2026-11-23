@@ -1,0 +1,59 @@
+{%- comment -%} Hemline theme by ZeronKit (https://zeronkit.com). Free theme - not for resale or redistribution. © 2026 ZeronKit. {%- endcomment -%}
+{%- liquid
+  # Blocks without a collection use the store collections that have products, in order.
+  assign auto_list = ''
+  for c in collections limit: 30
+    if c.products_count > 0 and c.handle != 'all' and c.handle != 'frontpage'
+      assign auto_list = auto_list | append: c.handle | append: ','
+    endif
+  endfor
+  assign auto_handles = auto_list | split: ','
+  assign auto_index = 0
+-%}
+<section class="hm-section color-{{ section.settings.color_scheme }}">
+  <div class="hm-wrap">
+    {%- if section.settings.heading != blank -%}
+      <div class="hm-section__head">
+        <h2 class="hm-h2">{{ section.settings.heading | escape }}</h2>
+      </div>
+    {%- endif -%}
+    <ul class="hm-grid hm-grid--{{ section.settings.columns }} hm-grid--m2" role="list">
+      {%- for block in section.blocks -%}
+        {%- liquid
+          assign card_collection = block.settings.collection
+          if card_collection == blank and auto_handles[auto_index] != blank
+            assign card_collection = collections[auto_handles[auto_index]]
+            assign auto_index = auto_index | plus: 1
+          endif
+        -%}
+        <li {{ block.shopify_attributes }}>{% render 'collection-card', collection: card_collection, placeholder_index: forloop.index0 %}</li>
+      {%- endfor -%}
+    </ul>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "t:names.collection_list",
+  "class": "hm-shopify-section",
+  "max_blocks": 12,
+  "settings": [
+    { "type": "text", "id": "heading", "label": "t:labels.heading", "default": "Shop by category" },
+    { "type": "range", "id": "columns", "label": "t:labels.columns_desktop", "min": 2, "max": 5, "step": 1, "default": 4 },
+    { "type": "color_scheme", "id": "color_scheme", "label": "t:labels.color_scheme", "default": "scheme-1" }
+  ],
+  "blocks": [
+    {
+      "type": "collection",
+      "name": "t:names.collection",
+      "settings": [{ "type": "collection", "id": "collection", "label": "t:labels.collection" }]
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:names.collection_list",
+      "blocks": [{ "type": "collection" }, { "type": "collection" }, { "type": "collection" }, { "type": "collection" }]
+    }
+  ]
+}
+{% endschema %}

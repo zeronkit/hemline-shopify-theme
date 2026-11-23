@@ -1,0 +1,75 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "settings": {}
+    },
+    "form": {
+      "type": "contact-form",
+      "blocks": {
+        "name": {
+          "type": "name",
+          "settings": {
+            "label": "Name",
+            "required": true,
+            "width": "half"
+          }
+        },
+        "email": {
+          "type": "email",
+          "settings": {
+            "label": "Email",
+            "width": "half"
+          }
+        },
+        "topic": {
+          "type": "topic",
+          "settings": {
+            "label": "Topic",
+            "options": "Order, Sizing, Returns, Other",
+            "placeholder": "Choose a topic",
+            "required": true,
+            "width": "half"
+          }
+        },
+        "order": {
+          "type": "order",
+          "settings": {
+            "label": "Order number",
+            "placeholder": "#1001",
+            "required": false,
+            "width": "half"
+          }
+        },
+        "message": {
+          "type": "message",
+          "settings": {
+            "label": "Message",
+            "required": true,
+            "width": "full"
+          }
+        }
+      },
+      "block_order": [
+        "name",
+        "email",
+        "topic",
+        "order",
+        "message"
+      ],
+      "settings": {
+        "enabled": true,
+        "heading": "Write to us",
+        "button_label": "Send message",
+        "layout": "form_info",
+        "info_hours": "<p>Monday to Friday, 9:00 to 17:00</p>",
+        "info_menu": "footer",
+        "color_scheme": "scheme-1"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "form"
+  ]
+}

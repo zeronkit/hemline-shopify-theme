@@ -1,0 +1,131 @@
+{%- comment -%} Hemline theme by ZeronKit (https://zeronkit.com). Free theme - not for resale or redistribution. © 2026 ZeronKit. {%- endcomment -%}
+{%- comment -%}
+  Fonts, global tokens and one class per colour scheme.
+  Theme settings > Style offers ready-made choices (palette, background style, font pairing, corners,
+  spacing, type scale) that map onto these variables. "Custom" keeps the raw pickers in charge.
+{%- endcomment -%}
+{%- liquid
+  assign heading_font = settings.type_heading_font
+  assign body_font = settings.type_body_font
+  assign body_bold = body_font | font_modify: 'weight', 'bold'
+  assign body_italic = body_font | font_modify: 'style', 'italic'
+  assign pairing = settings.font_pairing | default: 'custom'
+
+  assign sans = 'ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif'
+  case pairing
+    when 'modern'
+      assign stack_heading = sans
+      assign stack_body = sans
+    when 'editorial'
+      assign stack_heading = '"Iowan Old Style", "Palatino Linotype", Palatino, "Book Antiqua", Georgia, serif'
+      assign stack_body = sans
+    when 'classic'
+      assign stack_heading = 'Didot, "Bodoni 72", "Bodoni MT", "Hoefler Text", "Times New Roman", serif'
+      assign stack_body = 'Georgia, "Times New Roman", serif'
+    when 'mono'
+      assign stack_heading = 'ui-monospace, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace'
+      assign stack_body = sans
+    when 'rounded'
+      assign stack_heading = 'ui-rounded, "SF Pro Rounded", "Arial Rounded MT Bold", "Nunito", system-ui, sans-serif'
+      assign stack_body = sans
+    when 'arabic'
+      assign stack_heading = '"Noto Kufi Arabic", "Noto Sans Arabic", "Segoe UI", Tahoma, "Geeza Pro", system-ui, sans-serif'
+      assign stack_body = '"Noto Sans Arabic", "Noto Kufi Arabic", "Segoe UI", Tahoma, "Geeza Pro", system-ui, sans-serif'
+  endcase
+
+  case settings.corner_style
+    when 'sharp'
+      assign radius = 0
+    when 'soft'
+      assign radius = 4
+    when 'round'
+      assign radius = 14
+    else
+      assign radius = settings.corner_radius
+  endcase
+
+  case settings.type_scale
+    when 'compact'
+      assign type_factor = 0.88
+    when 'bold'
+      assign type_factor = 1.16
+    else
+      assign type_factor = 1
+  endcase
+-%}
+{%- if pairing == 'custom' -%}
+  {{ heading_font | font_url | preload_tag: as: 'font', type: 'font/woff2', crossorigin: true }}
+  {{ body_font | font_url | preload_tag: as: 'font', type: 'font/woff2', crossorigin: true }}
+{%- endif -%}
+{% style %}
+  {%- if pairing == 'custom' %}
+    {{ heading_font | font_face: font_display: 'swap' }}
+    {{ body_font | font_face: font_display: 'swap' }}
+    {{ body_bold | font_face: font_display: 'swap' }}
+    {{ body_italic | font_face: font_display: 'swap' }}
+  {%- endif %}
+
+  :root {
+    --hm-font-script: "Noto Kufi Arabic", "Noto Sans Arabic", "Geeza Pro", Tahoma;
+    {%- if pairing == 'custom' %}
+      --hm-font-heading: {{ heading_font.family }}, var(--hm-font-script), {{ heading_font.fallback_families }};
+      --hm-font-heading-weight: {{ heading_font.weight }};
+      --hm-font-heading-style: {{ heading_font.style }};
+      --hm-font-body: {{ body_font.family }}, var(--hm-font-script), {{ body_font.fallback_families }};
+      --hm-font-body-weight: {{ body_font.weight }};
+      --hm-font-body-weight-bold: {{ body_bold.weight | default: 700 }};
+    {%- else %}
+      --hm-font-heading: {{ stack_heading }};
+      --hm-font-heading-weight: 700;
+      --hm-font-heading-style: normal;
+      --hm-font-body: {{ stack_body }};
+      --hm-font-body-weight: 400;
+      --hm-font-body-weight-bold: 700;
+    {%- endif %}
+    --hm-heading-scale: {{ settings.heading_scale | divided_by: 100.0 | times: type_factor }};
+    --hm-body-scale: {{ settings.body_scale | divided_by: 100.0 }};
+    --hm-page-width: {{ settings.page_width }}px;
+    --hm-radius: {{ radius }}px;
+    --hm-button-radius: {% if settings.button_style == 'pill' %}999px{% else %}{{ radius }}px{% endif %};
+    --hm-card-ratio: {{ settings.card_ratio }};
+  }
+
+  {% for scheme in settings.color_schemes -%}
+    {% render 'scheme-vars', id: scheme.id, bg: scheme.settings.background, gradient: scheme.settings.background_gradient, text: scheme.settings.text, accent: scheme.settings.accent, button: scheme.settings.button, label: scheme.settings.button_label %}
+  {% endfor %}
+
+  {%- comment -%} A ready-made palette replaces the main scheme (1) and the soft scheme (3). {%- endcomment -%}
+  {%- liquid
+    case settings.palette
+      when 'paper'
+        assign p = '#F6F3EE,#1B1A18,#9E3B22,#1B1A18,#F6F3EE,#E9E1D3' | split: ','
+      when 'ink'
+        assign p = '#141414,#F4F1EA,#E8B27D,#F4F1EA,#141414,#1F1E1C' | split: ','
+      when 'sand'
+        assign p = '#E9E1D3,#241F19,#7A2E1A,#241F19,#E9E1D3,#DDD2BF' | split: ','
+      when 'sage'
+        assign p = '#DDE3D5,#1C2419,#3F5A34,#2E4228,#F3F5EE,#CFD7C4' | split: ','
+      when 'blush'
+        assign p = '#F6E4DF,#2A1B1A,#9B2F3A,#2A1B1A,#F6E4DF,#EED3CC' | split: ','
+      when 'contrast'
+        assign p = '#FFFFFF,#000000,#0033CC,#000000,#FFFFFF,#F0F0F0' | split: ','
+      when 'ocean'
+        assign p = '#EEF4F7,#0F2430,#0B5D7A,#0F2430,#EEF4F7,#DCE8EE' | split: ','
+      when 'terracotta'
+        assign p = '#F5ECE4,#2B1A12,#A4442A,#A4442A,#FFF8F2,#ECDCCF' | split: ','
+      when 'mono'
+        assign p = '#FFFFFF,#111111,#4A4A4A,#111111,#FFFFFF,#F2F2F2' | split: ','
+      when 'olive'
+        assign p = '#F1F0E6,#22251A,#5B6630,#3A4120,#F1F0E6,#E3E2D0' | split: ','
+      else
+        assign p = nil
+    endcase
+    if settings.background_style == 'dark'
+      assign p = '#121212,#EDE8DF,#D9A46C,#EDE8DF,#121212,#1E1D1B' | split: ','
+    endif
+  -%}
+  {%- if p -%}
+    {% render 'scheme-vars', id: 'scheme-1', bg: p[0], text: p[1], accent: p[2], button: p[3], label: p[4] %}
+    {% render 'scheme-vars', id: 'scheme-3', bg: p[5], text: p[1], accent: p[2], button: p[3], label: p[4] %}
+  {%- endif -%}
+{% endstyle %}

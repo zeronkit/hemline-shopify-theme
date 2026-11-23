@@ -1,0 +1,19 @@
+{%- comment -%} Hemline theme by ZeronKit (https://zeronkit.com). Free theme - not for resale or redistribution. © 2026 ZeronKit. {%- endcomment -%}
+{%- comment -%}
+  CSS variables for one colour scheme. Derived tones use color-mix, so any colour works.
+  Params: id, bg, gradient (optional), text, accent, button, label
+{%- endcomment -%}
+.color-{{ id }} {
+  --hm-bg: {{ bg }};
+  --hm-bg-gradient: {% if gradient != blank %}{{ gradient }}{% else %}{{ bg }}{% endif %};
+  --hm-text: {{ text }};
+  --hm-accent: {{ accent }};
+  --hm-button: {{ button }};
+  --hm-button-label: {{ label }};
+  --hm-line: color-mix(in srgb, {{ text }} 22%, transparent);
+  --hm-muted: color-mix(in srgb, {{ text }} 82%, {{ bg }});
+  --hm-tint: color-mix(in srgb, {{ text }} 6%, transparent);
+  --hm-soft: color-mix(in srgb, {{ text }} 5%, {{ bg }});
+  background: var(--hm-bg-gradient);
+  color: var(--hm-text);
+}

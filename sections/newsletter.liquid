@@ -1,0 +1,23 @@
+{%- comment -%} Hemline theme by ZeronKit (https://zeronkit.com). Free theme - not for resale or redistribution. © 2026 ZeronKit. {%- endcomment -%}
+<section class="hm-section hm-newsletter-section color-{{ section.settings.color_scheme }}">
+  <div class="hm-wrap hm-wrap--narrow hm-center">
+    <h2 class="hm-h2">{{ section.settings.heading | escape }}</h2>
+    {%- if section.settings.text != blank -%}<div class="hm-rte">{{ section.settings.text }}</div>{%- endif -%}
+    {%- assign form_id = 'Newsletter-' | append: section.id -%}
+    {% render 'newsletter-form', id: form_id %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "t:names.newsletter",
+  "class": "hm-shopify-section",
+  "settings": [
+    { "type": "text", "id": "heading", "label": "t:labels.heading", "default": "First to know" },
+    { "type": "richtext", "id": "text", "label": "t:labels.text", "default": "<p>Hear about new drops and restocks. No spam, unsubscribe any time.</p>" },
+    { "type": "paragraph", "content": "t:info.newsletter" },
+    { "type": "color_scheme", "id": "color_scheme", "label": "t:labels.color_scheme", "default": "scheme-1" }
+  ],
+  "presets": [{ "name": "t:names.newsletter" }]
+}
+{% endschema %}

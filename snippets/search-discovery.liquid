@@ -1,0 +1,44 @@
+{%- comment -%} Hemline theme by ZeronKit (https://zeronkit.com). Free theme - not for resale or redistribution. © 2026 ZeronKit. {%- endcomment -%}
+{%- comment -%}
+  What a shopper sees before typing: popular searches, recent searches (filled by search.js) and new products.
+  Params: id (unique), show_products (boolean), heading_tag
+{%- endcomment -%}
+{%- liquid
+  assign popular = settings.search_popular | split: ','
+  assign heading_tag = heading_tag | default: 'h2'
+-%}
+{%- if popular.size > 0 -%}
+  <div class="hm-search-block">
+    <{{ heading_tag }} class="hm-field__label">{{ 'search.popular' | t }}</{{ heading_tag }}>
+    <ul class="hm-chips" role="list">
+      {%- for term in popular -%}
+        {%- assign clean = term | strip -%}
+        {%- if clean != blank -%}
+          <li><a class="hm-pill" href="{{ routes.search_url }}?q={{ clean | url_encode }}&amp;options%5Bprefix%5D=last">{{ clean | escape }}</a></li>
+        {%- endif -%}
+      {%- endfor -%}
+    </ul>
+  </div>
+{%- endif -%}
+
+<div class="hm-search-block" data-hm-recent hidden>
+  <div class="hm-recent__head">
+    <{{ heading_tag }} class="hm-field__label">{{ 'search.recent' | t }}</{{ heading_tag }}>
+    <button type="button" class="hm-link-button" data-hm-recent-clear>{{ 'search.recent_clear' | t }}</button>
+  </div>
+  <ul class="hm-chips" role="list" data-hm-recent-list></ul>
+</div>
+
+{%- if show_products -%}
+  {%- assign newest = collections.all.products | sort: 'published_at' | reverse -%}
+  {%- if newest.size > 0 -%}
+    <div class="hm-search-block">
+      <{{ heading_tag }} class="hm-field__label">{{ 'search.new_in' | t }}</{{ heading_tag }}>
+      <ul class="hm-grid hm-grid--4 hm-grid--m2" role="list">
+        {%- for product in newest limit: 4 -%}
+          <li>{% render 'product-card', product: product, sizes: '(min-width: 990px) 22vw, 50vw' %}</li>
+        {%- endfor -%}
+      </ul>
+    </div>
+  {%- endif -%}
+{%- endif -%}

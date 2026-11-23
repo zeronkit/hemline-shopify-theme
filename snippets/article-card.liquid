@@ -1,0 +1,19 @@
+{%- comment -%} Hemline theme by ZeronKit (https://zeronkit.com). Free theme - not for resale or redistribution. © 2026 ZeronKit. {%- endcomment -%}
+{%- comment -%}
+  Params: article, sizes
+{%- endcomment -%}
+{%- assign sizes = sizes | default: '(min-width: 990px) 33vw, 100vw' -%}
+<article class="hm-text-card hm-article-card">
+  {%- if article.image -%}
+    <div class="hm-article-card__media">
+      {% render 'image', image: article.image, sizes: sizes, max: 1200, alt: '' %}
+    </div>
+  {%- endif -%}
+  <p class="hm-eyebrow">{{ article.published_at | time_tag: format: 'date' }}</p>
+  <h3 class="hm-h4"><a class="hm-card__link" href="{{ article.url }}">{{ article.title | escape }}</a></h3>
+  {%- if article.excerpt != blank -%}
+    <div class="hm-small hm-muted">{{ article.excerpt | strip_html | truncatewords: 24 }}</div>
+  {%- else -%}
+    <p class="hm-small hm-muted">{{ article.content | strip_html | truncatewords: 24 }}</p>
+  {%- endif -%}
+</article>

@@ -1,0 +1,304 @@
+{
+  "accessibility": {
+    "skip_to_content": "انتقل إلى المحتوى"
+  },
+  "general": {
+    "announcements": "الإعلانات",
+    "back": "رجوع",
+    "close": "إغلاق",
+    "error": "حدث خطأ. يرجى المحاولة مرة أخرى.",
+    "new_window": "يفتح في نافذة جديدة",
+    "pause_video": "إيقاف فيديو الخلفية مؤقتًا",
+    "per": "لكل",
+    "meta": {
+      "tags": "الوسم \"{{ tags }}\"",
+      "page": "الصفحة {{ page }}"
+    },
+    "pagination": {
+      "label": "التنقل بين الصفحات",
+      "previous": "الصفحة السابقة",
+      "next": "الصفحة التالية",
+      "page": "الصفحة {{ number }}"
+    },
+    "pause_announcements": "إيقاف الإعلانات مؤقتًا",
+    "close_announcements": "إغلاق الإعلانات",
+    "slider": {
+      "previous": "التمرير للخلف: {{ label }}",
+      "next": "التمرير للأمام: {{ label }}"
+    }
+  },
+  "header": {
+    "shop": "تسوّق",
+    "primary_nav": "القائمة الرئيسية",
+    "quick_nav": "روابط سريعة",
+    "search": "بحث",
+    "collections": "المجموعات",
+    "view_all_plain": "عرض الكل",
+    "secondary_nav": "روابط إضافية"
+  },
+  "localization": {
+    "country_label": "الدولة/المنطقة",
+    "language_label": "اللغة"
+  },
+  "search": {
+    "title": "بحث",
+    "label": "ابحث في المتجر",
+    "placeholder": "ابحث عن قطعة أو لون أو أسلوب",
+    "submit": "بحث",
+    "suggestions": "اقتراحات البحث",
+    "results_for": "نتائج البحث عن \"{{ terms }}\"",
+    "view_all": "عرض كل النتائج لـ \"{{ terms }}\"",
+    "page": "صفحة",
+    "results_count": {
+      "zero": "لا توجد اقتراحات",
+      "one": "اقتراح واحد",
+      "two": "اقتراحان",
+      "few": "{{ count }} اقتراحات",
+      "many": "{{ count }} اقتراحًا",
+      "other": "{{ count }} اقتراح"
+    },
+    "page_heading": "عمّ تبحث؟",
+    "tabs_label": "أنواع النتائج",
+    "tab_all": "الكل",
+    "tab_products": "المنتجات",
+    "tab_articles": "المقالات",
+    "tab_pages": "الصفحات",
+    "matching_collections": "مجموعات مطابقة",
+    "no_results_title": "لا توجد نتائج لـ \"{{ terms }}\"",
+    "no_results_hint": "تحقّق من الإملاء، أو جرّب كلمة أقصر أو أعم، أو اختر أحد عمليات البحث أدناه.",
+    "you_may_like": "قد يعجبك أيضًا",
+    "popular": "عمليات بحث شائعة",
+    "recent": "عمليات البحث الأخيرة",
+    "recent_clear": "مسح",
+    "new_in": "وصل حديثًا"
+  },
+  "products": {
+    "add_to_cart": "أضف إلى السلة",
+    "sold_out": "نفدت الكمية",
+    "unavailable": "غير متوفر",
+    "unavailable_short": "غير متوفر",
+    "new": "جديد",
+    "view_details": "عرض التفاصيل كاملة",
+    "placeholder_title": "منتجك",
+    "placeholder_help": "اختر منتجًا في محرر القالب لعرضه هنا.",
+    "sizes_label": "المقاسات المتوفرة:",
+    "colours_count": {
+      "zero": "لا توجد ألوان",
+      "one": "لون واحد",
+      "two": "لونان",
+      "few": "{{ count }} ألوان",
+      "many": "{{ count }} لونًا",
+      "other": "{{ count }} لون"
+    },
+    "tax_included": "شامل الضريبة.",
+    "shipping_policy_html": "تُحسب تكلفة <a href=\"{{ link }}\">الشحن</a> عند الدفع.",
+    "purchase_options": "خيارات الشراء",
+    "one_time": "شراء لمرة واحدة",
+    "quantity": "الكمية",
+    "quantity_down": "إنقاص الكمية",
+    "quantity_up": "زيادة الكمية",
+    "price": {
+      "regular": "السعر العادي",
+      "sale": "سعر التخفيض",
+      "unit": "سعر الوحدة",
+      "from": "ابتداءً من {{ price }}"
+    },
+    "fit": {
+      "title": "المقاس عند اللبس",
+      "runs_small": "أصغر من المعتاد",
+      "true_to_size": "مطابق للمقاس",
+      "runs_large": "أكبر من المعتاد",
+      "size_guide": "دليل المقاسات"
+    },
+    "media": {
+      "gallery": "صور المنتج",
+      "play_video": "تشغيل الفيديو",
+      "load_model": "تحميل النموذج ثلاثي الأبعاد",
+      "view_in_space": "اعرضه في مساحتك",
+      "zoom": "فتح الصورة بحجم أكبر",
+      "previous": "الصورة السابقة",
+      "next": "الصورة التالية"
+    },
+    "pickup": {
+      "available_at_html": "الاستلام متاح في <strong>{{ location }}</strong>",
+      "unavailable_at_html": "الاستلام غير متاح حاليًا في <strong>{{ location }}</strong>",
+      "view_stores": "تحقّق من المتاجر الأخرى",
+      "ready": "جاهز للاستلام:",
+      "not_ready": "غير متاح للاستلام حاليًا"
+    },
+    "tabs": {
+      "materials": "الخامات",
+      "care": "العناية",
+      "shipping_policy": "سياسة الشحن",
+      "refund_policy": "سياسة الإرجاع والاسترداد",
+      "materials_default_html": "<p>مصنوع من أقمشة مختارة لتدوم طويلًا. التركيبة الدقيقة مطبوعة على بطاقة العناية داخل القطعة.</p><h4>العناية</h4><p>اغسله على حرارة 30 درجة بدورة لطيفة مع ألوان مشابهة. لا تستخدم المجفف. اكوِه على حرارة منخفضة عند الحاجة.</p>",
+      "shipping_default_html": "<p>تُشحن الطلبات عادةً خلال يوم إلى 3 أيام عمل. تظهر مدة التوصيل وتكلفته لعنوانك عند الدفع.</p><p>التوصيل العادي مجاني للطلبات التي تتجاوز المبلغ الظاهر عند الدفع.</p><p>الإرجاع مجاني خلال 30 يومًا من الاستلام للقطع غير الملبوسة مع بقاء بطاقاتها.</p>",
+      "fit_default_html": "<p>القصّة مطابقة للمقاس. إذا كنت بين مقاسين فاختر الأكبر لراحة أكثر. افتح دليل المقاسات لمعرفة القياسات الدقيقة.</p>"
+    },
+    "show_colour": "عرض اللون {{ colour }}",
+    "colour_map": "أسود:black,أبيض:white,رمادي:grey,أخضر:green,أرجواني:purple,بنفسجي:purple,أحمر:red,أزرق:blue,كحلي:navy,بيج:beige,بني:brown,وردي:pink,ذهبي:gold,فضي:silver,كريمي:cream,زيتوني:olive,خاكي:khaki,أصفر:yellow,برتقالي:orange,سماوي:sky blue,عاجي:ivory,جملي:camel,رملي:sand,noir:black,blanc:white,gris:grey,vert:green,rouge:red,bleu:blue,marine:navy,rose:pink,jaune:yellow,beige:beige,marron:brown,violet:purple,doré:gold,argenté:silver,crème:cream,negro:black,blanco:white,gris:grey,verde:green,rojo:red,azul:blue,marino:navy,rosa:pink,amarillo:yellow,marrón:brown,morado:purple,dorado:gold,plateado:silver,crema:cream,schwarz:black,weiß:white,weiss:white,grau:grey,grün:green,rot:red,blau:blue,marineblau:navy,gelb:yellow,braun:brown,lila:purple,golden:gold,silbern:silver",
+    "option_names": {
+      "colour": "اللون,لون,الألوان,Color,Colour",
+      "size": "المقاس,مقاس,الحجم,Size"
+    }
+  },
+  "collections": {
+    "eyebrow": "مجموعة",
+    "all_title": "المجموعات",
+    "filter": "تصفية",
+    "sort_by": "ترتيب حسب",
+    "from": "من",
+    "to": "إلى",
+    "clear_all": "مسح الكل",
+    "remove_filter": "إزالة عامل التصفية",
+    "show_results": "عرض النتائج",
+    "shop_by_colour": "تسوّق حسب اللون",
+    "colours_in": "الألوان في {{ collection }}",
+    "empty": "لا توجد منتجات تطابق عوامل التصفية هذه.",
+    "view_all": "عرض الكل",
+    "placeholder_title": "مجموعتك",
+    "product_count": {
+      "zero": "لا توجد منتجات",
+      "one": "منتج واحد",
+      "two": "منتجان",
+      "few": "{{ count }} منتجات",
+      "many": "{{ count }} منتجًا",
+      "other": "{{ count }} منتج"
+    },
+    "showing": "عرض {{ shown }} من {{ total }}",
+    "load_more": "تحميل المزيد",
+    "show": "العرض",
+    "per_page": "{{ number }} في الصفحة"
+  },
+  "cart": {
+    "title": "السلة",
+    "title_with_count": {
+      "zero": "السلة، فارغة",
+      "one": "السلة، منتج واحد",
+      "two": "السلة، منتجان",
+      "few": "السلة، {{ count }} منتجات",
+      "many": "السلة، {{ count }} منتجًا",
+      "other": "السلة، {{ count }} منتج"
+    },
+    "added": "تمت الإضافة إلى سلتك",
+    "empty": "سلتك فارغة",
+    "continue": "متابعة التسوق",
+    "remove": "إزالة",
+    "quantity_for": "كمية {{ title }}",
+    "note": "ملاحظة الطلب",
+    "subtotal": "المجموع الفرعي",
+    "duties_taxes_included": "شامل الرسوم الجمركية والضرائب. تُحسب تكلفة الشحن عند الدفع.",
+    "taxes_included": "شامل الضرائب. تُحسب تكلفة الشحن عند الدفع.",
+    "taxes_at_checkout": "تُحسب الضرائب وتكلفة الشحن عند الدفع.",
+    "checkout": "الدفع",
+    "update": "تحديث السلة",
+    "view": "عرض السلة"
+  },
+  "sections": {
+    "outfit": {
+      "include": "أضف {{ slot }} إلى الإطلالة",
+      "choose": "اختر {{ options }} لـ {{ product }}",
+      "empty_slot": "أضف منتجات إلى هذا الصف من محرر القالب.",
+      "your_look": "إطلالتك",
+      "total": "الإجمالي",
+      "added": "أصبحت الإطلالة كاملة في سلتك"
+    },
+    "drop": {
+      "live": "متوفر الآن",
+      "upcoming": "قريبًا",
+      "notify": "سجّل بريدك وسنراسلك عند إطلاق هذه التشكيلة.",
+      "piece": "القطعة",
+      "see_all": "عرض التشكيلة كاملة"
+    }
+  },
+  "newsletter": {
+    "label": "البريد الإلكتروني",
+    "button": "اشترك",
+    "success": "شكرًا لاشتراكك."
+  },
+  "contact": {
+    "name": "الاسم",
+    "email": "البريد الإلكتروني",
+    "phone": "رقم الهاتف",
+    "message": "الرسالة",
+    "send": "إرسال",
+    "success": "شكرًا لتواصلك معنا. سنرد عليك في أقرب وقت ممكن.",
+    "title": "نموذج التواصل",
+    "order": "رقم الطلب",
+    "topic": "الموضوع",
+    "consent": "الموافقة",
+    "consent_yes": "نعم",
+    "consent_default": "أوافق على استخدام بياناتي للرد على هذه الرسالة.",
+    "error_heading": "يرجى مراجعة النموذج:",
+    "required_note": "الحقول المميزة بعلامة * مطلوبة.",
+    "info_label": "طرق أخرى للتواصل معنا",
+    "hours": "ساعات العمل",
+    "address": "العنوان"
+  },
+  "blogs": {
+    "all": "الكل",
+    "tags": "المواضيع",
+    "empty": "لا توجد مقالات بعد.",
+    "comments": {
+      "title": {
+        "zero": "لا توجد تعليقات",
+        "one": "تعليق واحد",
+        "two": "تعليقان",
+        "few": "{{ count }} تعليقات",
+        "many": "{{ count }} تعليقًا",
+        "other": "{{ count }} تعليق"
+      },
+      "leave": "اترك تعليقًا",
+      "name": "الاسم",
+      "email": "البريد الإلكتروني",
+      "message": "التعليق",
+      "post": "نشر التعليق",
+      "posted": "تم نشر تعليقك.",
+      "moderated": "شكرًا. سيظهر تعليقك بعد الموافقة عليه.",
+      "moderation_note": "تتم مراجعة التعليقات قبل نشرها."
+    }
+  },
+  "footer": {
+    "credit": "قالب من ZeronKit",
+    "payment_methods": "طرق الدفع",
+    "policies": "السياسات"
+  },
+  "social": {
+    "instagram": "Instagram",
+    "tiktok": "TikTok",
+    "facebook": "Facebook",
+    "pinterest": "Pinterest",
+    "youtube": "YouTube",
+    "snapchat": "Snapchat",
+    "twitter": "X"
+  },
+  "not_found": {
+    "title": "هذه الصفحة غير موجودة",
+    "text": "ربما يكون الرابط قديمًا أو نُقلت الصفحة. جرّب البحث بدلًا من ذلك.",
+    "collections": "مجموعات شائعة",
+    "tag": "المقاس: مفقود"
+  },
+  "password": {
+    "opening_soon": "نفتح قريبًا",
+    "newsletter": "اترك بريدك الإلكتروني لنخبرك عند الافتتاح.",
+    "enter": "الدخول بكلمة المرور",
+    "label": "كلمة المرور",
+    "submit": "دخول",
+    "owner_html": "هل أنت صاحب المتجر؟ <a href=\"{{ link }}\">سجّل الدخول هنا</a>",
+    "powered_by_html": "سيعمل هذا المتجر بواسطة {{ shopify }}"
+  },
+  "gift_card": {
+    "title": "بطاقة هدايا بقيمة {{ value }} من {{ shop }}",
+    "heading": "بطاقة الهدايا الخاصة بك",
+    "initial_value": "القيمة الأصلية {{ value }}",
+    "expired": "منتهية الصلاحية أو معطّلة",
+    "expires_on": "تنتهي في {{ date }}",
+    "code_label": "رمز بطاقة الهدايا",
+    "copy": "نسخ الرمز",
+    "copied": "تم نسخ الرمز",
+    "qr_label": "رمز QR لبطاقة الهدايا هذه",
+    "apple_wallet": "أضف إلى Apple Wallet",
+    "shop": "ابدأ التسوق",
+    "print": "طباعة"
+  }
+}

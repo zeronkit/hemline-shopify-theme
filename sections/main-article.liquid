@@ -1,0 +1,86 @@
+{%- comment -%} Hemline theme by ZeronKit (https://zeronkit.com). Free theme - not for resale or redistribution. © 2026 ZeronKit. {%- endcomment -%}
+<article class="hm-section hm-article color-{{ section.settings.color_scheme }}">
+  <div class="hm-wrap hm-wrap--narrow">
+    <header class="hm-article__head">
+      <p class="hm-eyebrow">
+        {{ article.published_at | time_tag: format: 'date' }}
+        {%- if section.settings.show_author %} &middot; {{ article.author | escape }}{% endif -%}
+      </p>
+      <h1 class="hm-h1">{{ article.title | escape }}</h1>
+    </header>
+    {%- if article.image -%}
+      <div class="hm-article__image">
+        {% render 'image', image: article.image, sizes: '(min-width: 990px) 860px, 100vw', eager: true %}
+      </div>
+    {%- endif -%}
+    <div class="hm-rte hm-article__content">{{ article.content }}</div>
+
+    {%- if article.tags.size > 0 -%}
+      <ul class="hm-rail__list hm-rail__list--wrap" role="list" aria-label="{{ 'blogs.tags' | t }}">
+        {%- for tag in article.tags -%}
+          <li><a class="hm-rail__pill" href="{{ blog.url }}/tagged/{{ tag | handleize }}">{{ tag | escape }}</a></li>
+        {%- endfor -%}
+      </ul>
+    {%- endif -%}
+
+    {%- if blog.comments_enabled? -%}
+      <section class="hm-comments" aria-labelledby="Comments-{{ section.id }}">
+        <h2 class="hm-h3" id="Comments-{{ section.id }}">{{ 'blogs.comments.title' | t: count: article.comments_count }}</h2>
+        {%- paginate article.comments by 20 -%}
+          <ul class="hm-comments__list" role="list">
+            {%- for comment in article.comments -%}
+              <li class="hm-comment">
+                <div class="hm-rte">{{ comment.content }}</div>
+                <p class="hm-small hm-muted">{{ comment.author | escape }} &middot; {{ comment.created_at | time_tag: format: 'date' }}</p>
+              </li>
+            {%- endfor -%}
+          </ul>
+          {% render 'pagination', paginate: paginate %}
+        {%- endpaginate -%}
+
+        {%- form 'new_comment', article, class: 'hm-form' -%}
+          <h3 class="hm-h4">{{ 'blogs.comments.leave' | t }}</h3>
+          {%- if form.posted_successfully? -%}
+            <p class="hm-notice hm-notice--success" role="status">
+              {%- if blog.moderated? -%}{{ 'blogs.comments.moderated' | t }}{%- else -%}{{ 'blogs.comments.posted' | t }}{%- endif -%}
+            </p>
+          {%- endif -%}
+          {%- if form.errors -%}
+            <div class="hm-notice hm-notice--error" role="alert">{{ form.errors | default_errors }}</div>
+          {%- endif -%}
+          <div class="hm-form__row">
+            <div class="hm-field">
+              <label class="hm-field__label" for="CommentAuthor">{{ 'blogs.comments.name' | t }}</label>
+              <input class="hm-input" type="text" id="CommentAuthor" name="comment[author]" value="{{ form.author }}" autocomplete="name" required>
+            </div>
+            <div class="hm-field">
+              <label class="hm-field__label" for="CommentEmail">{{ 'blogs.comments.email' | t }}</label>
+              <input class="hm-input" type="email" id="CommentEmail" name="comment[email]" value="{{ form.email }}" autocomplete="email" required>
+            </div>
+          </div>
+          <div class="hm-field">
+            <label class="hm-field__label" for="CommentBody">{{ 'blogs.comments.message' | t }}</label>
+            <textarea class="hm-input" id="CommentBody" name="comment[body]" rows="5" required>{{ form.body }}</textarea>
+          </div>
+          {%- if blog.moderated? -%}<p class="hm-small hm-muted">{{ 'blogs.comments.moderation_note' | t }}</p>{%- endif -%}
+          <button type="submit" class="hm-button hm-button--primary">{{ 'blogs.comments.post' | t }}</button>
+        {%- endform -%}
+      </section>
+    {%- endif -%}
+  </div>
+  <script type="application/ld+json">
+    {{ article | structured_data }}
+  </script>
+</article>
+
+{% schema %}
+{
+  "name": "t:names.blog_post",
+  "class": "hm-shopify-section",
+  "enabled_on": { "templates": ["article"] },
+  "settings": [
+    { "type": "checkbox", "id": "show_author", "label": "t:labels.show_author", "default": true },
+    { "type": "color_scheme", "id": "color_scheme", "label": "t:labels.color_scheme", "default": "scheme-1" }
+  ]
+}
+{% endschema %}

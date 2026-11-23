@@ -1,0 +1,284 @@
+{
+  "accessibility": {
+    "skip_to_content": "Skip to content"
+  },
+  "general": {
+    "announcements": "Announcements",
+    "back": "Back",
+    "close": "Close",
+    "error": "Something went wrong. Please try again.",
+    "new_window": "opens in a new window",
+    "pause_video": "Pause background video",
+    "per": "per",
+    "meta": {
+      "tags": "Tagged \"{{ tags }}\"",
+      "page": "Page {{ page }}"
+    },
+    "pagination": {
+      "label": "Pagination",
+      "previous": "Previous page",
+      "next": "Next page",
+      "page": "Page {{ number }}"
+    },
+    "pause_announcements": "Pause announcements",
+    "close_announcements": "Close announcements",
+    "slider": {
+      "previous": "Scroll back: {{ label }}",
+      "next": "Scroll forward: {{ label }}"
+    }
+  },
+  "header": {
+    "shop": "Shop",
+    "primary_nav": "Primary",
+    "quick_nav": "Quick links",
+    "search": "Search",
+    "collections": "Collections",
+    "view_all_plain": "View all",
+    "secondary_nav": "More links"
+  },
+  "localization": {
+    "country_label": "Country/region",
+    "language_label": "Language"
+  },
+  "search": {
+    "title": "Search",
+    "label": "Search the store",
+    "placeholder": "Search for a piece, colour or style",
+    "submit": "Search",
+    "suggestions": "Search suggestions",
+    "results_for": "Results for \"{{ terms }}\"",
+    "view_all": "See all results for \"{{ terms }}\"",
+    "page": "Page",
+    "results_count": {
+      "one": "{{ count }} suggestion",
+      "other": "{{ count }} suggestions"
+    },
+    "page_heading": "What are you looking for?",
+    "tabs_label": "Result types",
+    "tab_all": "All",
+    "tab_products": "Products",
+    "tab_articles": "Articles",
+    "tab_pages": "Pages",
+    "matching_collections": "Matching collections",
+    "no_results_title": "Nothing found for \"{{ terms }}\"",
+    "no_results_hint": "Check the spelling, try a shorter or more general word, or pick one of the searches below.",
+    "you_may_like": "You may like",
+    "popular": "Popular searches",
+    "recent": "Recent searches",
+    "recent_clear": "Clear",
+    "new_in": "New in"
+  },
+  "products": {
+    "add_to_cart": "Add to cart",
+    "sold_out": "Sold out",
+    "unavailable": "Unavailable",
+    "unavailable_short": "out of stock",
+    "new": "New",
+    "view_details": "View full details",
+    "placeholder_title": "Your product",
+    "placeholder_help": "Choose a product in the theme editor to show it here.",
+    "sizes_label": "Sizes in stock:",
+    "colours_count": {
+      "one": "{{ count }} colour",
+      "other": "{{ count }} colours"
+    },
+    "tax_included": "Tax included.",
+    "shipping_policy_html": "<a href=\"{{ link }}\">Shipping</a> calculated at checkout.",
+    "purchase_options": "Purchase options",
+    "one_time": "One-time purchase",
+    "quantity": "Quantity",
+    "quantity_down": "Decrease quantity",
+    "quantity_up": "Increase quantity",
+    "price": {
+      "regular": "Regular price",
+      "sale": "Sale price",
+      "unit": "Unit price",
+      "from": "From {{ price }}"
+    },
+    "fit": {
+      "title": "How it fits",
+      "runs_small": "Runs small",
+      "true_to_size": "True to size",
+      "runs_large": "Runs large",
+      "size_guide": "Size guide"
+    },
+    "media": {
+      "gallery": "Product images",
+      "play_video": "Play video",
+      "load_model": "Load 3D model",
+      "view_in_space": "View in your space",
+      "zoom": "Open larger image",
+      "previous": "Previous image",
+      "next": "Next image"
+    },
+    "pickup": {
+      "available_at_html": "Pickup available at <strong>{{ location }}</strong>",
+      "unavailable_at_html": "Pickup currently unavailable at <strong>{{ location }}</strong>",
+      "view_stores": "Check other stores",
+      "ready": "Ready for pickup:",
+      "not_ready": "Not available for pickup right now"
+    },
+    "tabs": {
+      "materials": "Materials",
+      "care": "Care",
+      "shipping_policy": "Shipping policy",
+      "refund_policy": "Returns and refunds policy",
+      "materials_default_html": "<p>Made from fabrics chosen to last. The exact composition is printed on the care label inside the garment.</p><h4>Care</h4><p>Wash at 30°C on a gentle cycle with similar colours. Do not tumble dry. Iron on low heat if needed.</p>",
+      "shipping_default_html": "<p>Orders are usually dispatched within 1 to 3 working days. Delivery times and costs for your address are shown at checkout.</p><p>Standard delivery is free on orders over the amount shown at checkout.</p><p>Returns are free within 30 days of delivery for unworn items with their tags attached.</p>",
+      "fit_default_html": "<p>Cut to fit true to size. If you are between sizes, choose the larger size for a more relaxed fit. Open the size guide for exact measurements.</p>"
+    },
+    "show_colour": "Show {{ colour }}",
+    "colour_map": "noir:black,blanc:white,gris:grey,vert:green,rouge:red,bleu:blue,marine:navy,rose:pink,jaune:yellow,beige:beige,marron:brown,violet:purple,doré:gold,argenté:silver,crème:cream,negro:black,blanco:white,gris:grey,verde:green,rojo:red,azul:blue,marino:navy,rosa:pink,amarillo:yellow,marrón:brown,morado:purple,dorado:gold,plateado:silver,crema:cream,schwarz:black,weiß:white,weiss:white,grau:grey,grün:green,rot:red,blau:blue,marineblau:navy,gelb:yellow,braun:brown,lila:purple,golden:gold,silbern:silver",
+    "option_names": {
+      "colour": "Color,Colour,Couleur,Farbe,Colore,Kleur,Kolor,Renk,Cor",
+      "size": "Size,Taille,Größe,Talla,Taglia,Maat,Rozmiar,Beden,Tamanho"
+    }
+  },
+  "collections": {
+    "eyebrow": "Collection",
+    "all_title": "Collections",
+    "filter": "Filter",
+    "sort_by": "Sort by",
+    "from": "From",
+    "to": "To",
+    "clear_all": "Clear all",
+    "remove_filter": "Remove filter",
+    "show_results": "Show results",
+    "shop_by_colour": "Shop by colour",
+    "colours_in": "Colours in {{ collection }}",
+    "empty": "No products match these filters.",
+    "view_all": "View all",
+    "placeholder_title": "Your collection",
+    "product_count": {
+      "one": "{{ count }} product",
+      "other": "{{ count }} products"
+    },
+    "showing": "Showing {{ shown }} of {{ total }}",
+    "load_more": "Load more",
+    "show": "Show",
+    "per_page": "{{ number }} per page"
+  },
+  "cart": {
+    "title": "Cart",
+    "title_with_count": {
+      "one": "Cart, {{ count }} item",
+      "other": "Cart, {{ count }} items"
+    },
+    "added": "Added to your cart",
+    "empty": "Your cart is empty",
+    "continue": "Continue shopping",
+    "remove": "Remove",
+    "quantity_for": "Quantity for {{ title }}",
+    "note": "Order note",
+    "subtotal": "Subtotal",
+    "duties_taxes_included": "Duties and taxes included. Shipping calculated at checkout.",
+    "taxes_included": "Taxes included. Shipping calculated at checkout.",
+    "taxes_at_checkout": "Taxes and shipping calculated at checkout.",
+    "checkout": "Check out",
+    "update": "Update cart",
+    "view": "View cart"
+  },
+  "sections": {
+    "outfit": {
+      "include": "Include {{ slot }} in the look",
+      "choose": "Choose {{ options }} for {{ product }}",
+      "empty_slot": "Add products to this row in the theme editor.",
+      "your_look": "Your look",
+      "total": "Total",
+      "added": "The whole look is in your cart"
+    },
+    "drop": {
+      "live": "Out now",
+      "upcoming": "Coming soon",
+      "notify": "Sign up and we will email you when this drop is live.",
+      "piece": "Piece",
+      "see_all": "See the full drop"
+    }
+  },
+  "newsletter": {
+    "label": "Email address",
+    "button": "Sign up",
+    "success": "Thanks for signing up."
+  },
+  "contact": {
+    "name": "Name",
+    "email": "Email",
+    "phone": "Phone number",
+    "message": "Message",
+    "send": "Send",
+    "success": "Thanks for writing to us. We will get back to you as soon as we can.",
+    "title": "Contact form",
+    "order": "Order number",
+    "topic": "Topic",
+    "consent": "Consent",
+    "consent_yes": "Yes",
+    "consent_default": "I agree that my details are used to answer this message.",
+    "error_heading": "Please check the form:",
+    "required_note": "Fields marked * are required.",
+    "info_label": "Other ways to reach us",
+    "hours": "Opening hours",
+    "address": "Address"
+  },
+  "blogs": {
+    "all": "All",
+    "tags": "Topics",
+    "empty": "No posts yet.",
+    "comments": {
+      "title": {
+        "one": "{{ count }} comment",
+        "other": "{{ count }} comments"
+      },
+      "leave": "Leave a comment",
+      "name": "Name",
+      "email": "Email",
+      "message": "Comment",
+      "post": "Post comment",
+      "posted": "Your comment was posted.",
+      "moderated": "Thanks. Your comment will appear once it is approved.",
+      "moderation_note": "Comments are checked before they are published."
+    }
+  },
+  "footer": {
+    "credit": "Theme by ZeronKit",
+    "payment_methods": "Payment methods",
+    "policies": "Policies"
+  },
+  "social": {
+    "instagram": "Instagram",
+    "tiktok": "TikTok",
+    "facebook": "Facebook",
+    "pinterest": "Pinterest",
+    "youtube": "YouTube",
+    "snapchat": "Snapchat",
+    "twitter": "X"
+  },
+  "not_found": {
+    "title": "This page is not here",
+    "text": "The link may be old or the page may have moved. Try a search instead.",
+    "collections": "Popular collections",
+    "tag": "SIZE: LOST"
+  },
+  "password": {
+    "opening_soon": "Opening soon",
+    "newsletter": "Leave your email to hear when we open.",
+    "enter": "Enter with password",
+    "label": "Password",
+    "submit": "Enter",
+    "owner_html": "Are you the store owner? <a href=\"{{ link }}\">Log in here</a>",
+    "powered_by_html": "This shop will be powered by {{ shopify }}"
+  },
+  "gift_card": {
+    "title": "Your {{ value }} gift card for {{ shop }}",
+    "heading": "Your gift card",
+    "initial_value": "Original value {{ value }}",
+    "expired": "Expired or disabled",
+    "expires_on": "Expires on {{ date }}",
+    "code_label": "Gift card code",
+    "copy": "Copy code",
+    "copied": "Code copied",
+    "qr_label": "QR code for this gift card",
+    "apple_wallet": "Add to Apple Wallet",
+    "shop": "Start shopping",
+    "print": "Print"
+  }
+}

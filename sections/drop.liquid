@@ -1,0 +1,91 @@
+{%- comment -%} Hemline theme by ZeronKit (https://zeronkit.com). Free theme - not for resale or redistribution. © 2026 ZeronKit. {%- endcomment -%}
+{%- comment -%}
+  Drop ledger: a numbered release sheet for new arrivals. Shows a plain release date,
+  never a countdown or invented stock pressure. Upcoming drops offer a sign-up instead of products.
+{%- endcomment -%}
+{%- liquid
+  assign collection = section.settings.collection
+  if collection != blank
+    assign products = collection.products
+  else
+    # No collection chosen: show the newest products of the whole store.
+    assign collection = collections.all
+    assign products = collections.all.products | sort: 'published_at' | reverse
+  endif
+-%}
+<section class="hm-section hm-drop color-{{ section.settings.color_scheme }}" aria-labelledby="DropTitle-{{ section.id }}">
+  <div class="hm-wrap">
+    <header class="hm-drop__head">
+      <p class="hm-drop__code" aria-hidden="true">{{ section.settings.drop_code | escape }}</p>
+      <div class="hm-drop__meta">
+        <p class="hm-eyebrow">
+          {%- if section.settings.status == 'upcoming' -%}
+            {{ 'sections.drop.upcoming' | t }}
+          {%- else -%}
+            {{ 'sections.drop.live' | t }}
+          {%- endif -%}
+          {%- if section.settings.date_text != blank %} &middot; {{ section.settings.date_text | escape }}{% endif -%}
+        </p>
+        <h2 class="hm-h1" id="DropTitle-{{ section.id }}">{{ section.settings.heading | escape }}</h2>
+        {%- if section.settings.text != blank -%}<div class="hm-rte">{{ section.settings.text }}</div>{%- endif -%}
+      </div>
+    </header>
+
+    {%- if section.settings.status == 'upcoming' -%}
+      <div class="hm-drop__signup">
+        <p>{{ 'sections.drop.notify' | t }}</p>
+        {%- assign form_id = 'DropNewsletter-' | append: section.id -%}
+        {% render 'newsletter-form', id: form_id %}
+      </div>
+    {%- else -%}
+      <ol class="hm-grid hm-grid--{{ section.settings.columns }} hm-grid--m2 hm-drop__list" role="list">
+        {%- if products.size > 0 -%}
+          {%- for product in products limit: section.settings.limit -%}
+            <li class="hm-drop__item">
+              <span class="hm-drop__index" aria-hidden="true">{{ 'sections.drop.piece' | t }} {{ forloop.index | prepend: '0' | slice: -2, 2 }}</span>
+              {% render 'product-card', product: product %}
+            </li>
+          {%- endfor -%}
+        {%- else -%}
+          {%- for i in (1..4) -%}
+            <li class="hm-drop__item">
+              <span class="hm-drop__index" aria-hidden="true">{{ 'sections.drop.piece' | t }} 0{{ i }}</span>
+              {% render 'product-card', product: blank, placeholder_index: i %}
+            </li>
+          {%- endfor -%}
+        {%- endif -%}
+      </ol>
+      {%- if collection != blank -%}
+        <a class="hm-button hm-button--ghost" href="{{ collection.url }}">{{ 'sections.drop.see_all' | t }} {% render 'icon', name: 'arrow' %}</a>
+      {%- endif -%}
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "t:names.drop",
+  "class": "hm-shopify-section",
+  "settings": [
+    {
+      "type": "select",
+      "id": "status",
+      "label": "t:labels.drop_status",
+      "options": [
+        { "value": "live", "label": "t:options.live" },
+        { "value": "upcoming", "label": "t:options.upcoming" }
+      ],
+      "default": "live"
+    },
+    { "type": "text", "id": "drop_code", "label": "t:labels.drop_code", "default": "D/01", "info": "t:info.drop_code" },
+    { "type": "text", "id": "heading", "label": "t:labels.heading", "default": "New arrivals" },
+    { "type": "text", "id": "date_text", "label": "t:labels.release_date", "info": "t:info.release_date" },
+    { "type": "richtext", "id": "text", "label": "t:labels.text", "default": "<p>The latest pieces, listed in the order they arrived.</p>" },
+    { "type": "collection", "id": "collection", "label": "t:labels.collection", "info": "t:info.drop_collection" },
+    { "type": "range", "id": "limit", "label": "t:labels.products_to_show", "min": 2, "max": 12, "step": 1, "default": 4 },
+    { "type": "range", "id": "columns", "label": "t:labels.columns_desktop", "min": 2, "max": 4, "step": 1, "default": 4 },
+    { "type": "color_scheme", "id": "color_scheme", "label": "t:labels.color_scheme", "default": "scheme-4" }
+  ],
+  "presets": [{ "name": "t:names.drop" }]
+}
+{% endschema %}

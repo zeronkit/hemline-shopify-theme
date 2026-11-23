@@ -1,0 +1,111 @@
+{%- comment -%} Hemline theme by ZeronKit (https://zeronkit.com). Free theme - not for resale or redistribution. © 2026 ZeronKit. {%- endcomment -%}
+{%- liquid
+  # A shopper's "Show" choice is kept in a hidden cart attribute, because Liquid cannot read URL parameters.
+  assign per_page = section.settings.per_page
+  assign chosen = cart.attributes['_hm_per_page'] | plus: 0
+  if section.settings.show_per_page and chosen >= 8 and chosen <= 48
+    assign per_page = chosen
+  endif
+-%}
+<section class="hm-section hm-collection color-{{ section.settings.color_scheme }}">
+  <div class="hm-wrap">
+    <header class="hm-collection__head{% if section.settings.show_image and collection.image %} hm-collection__head--image{% endif %}">
+      <div class="hm-collection__intro">
+        <p class="hm-eyebrow">{{ 'collections.eyebrow' | t }}</p>
+        <h1 class="hm-h1">{{ collection.title | escape }}</h1>
+        {%- if section.settings.show_description and collection.description != blank -%}
+          <div class="hm-rte hm-collection__desc">{{ collection.description }}</div>
+        {%- endif -%}
+      </div>
+      {%- if section.settings.show_image and collection.image -%}
+        <div class="hm-collection__image">
+          {% render 'image', image: collection.image, sizes: '(min-width: 750px) 40vw, 100vw', eager: true %}
+        </div>
+      {%- endif -%}
+    </header>
+
+    {%- paginate collection.products by per_page -%}
+      <hm-facets class="hm-facets" data-section-id="{{ section.id }}">
+        {%- assign clear_url = collection.url | append: '?sort_by=' | append: collection.sort_by -%}
+        {% render 'facets',
+          filters: collection.filters,
+          sort_options: collection.sort_options,
+          sort_by: collection.sort_by,
+          default_sort: collection.default_sort_by,
+          count: collection.products_count,
+          section_id: section.id,
+          clear_url: clear_url,
+          enable_filtering: section.settings.enable_filtering,
+          enable_sorting: section.settings.enable_sorting,
+          show_colour_bar: section.settings.show_colour_bar,
+          scheme: section.settings.color_scheme,
+          show_per_page: section.settings.show_per_page,
+          per_page: per_page
+        %}
+
+        <div class="hm-facets__results" data-hm-results>
+          {%- if collection.products.size > 0 -%}
+            <ul class="hm-grid hm-grid--{{ section.settings.columns }} hm-grid--m{{ section.settings.columns_mobile }}" role="list">
+              {%- for product in collection.products -%}
+                {%- liquid
+                  assign eager = false
+                  if forloop.index <= 2
+                    assign eager = true
+                  endif
+                -%}
+                <li>{% render 'product-card', product: product, eager: eager %}</li>
+              {%- endfor -%}
+            </ul>
+          {%- else -%}
+            <div class="hm-empty">
+              <p class="hm-h4">{{ 'collections.empty' | t }}</p>
+              <a class="hm-link-button" href="{{ clear_url }}" data-hm-facet-link>{{ 'collections.clear_all' | t }}</a>
+            </div>
+          {%- endif -%}
+          {%- assign shown = paginate.current_offset | plus: collection.products.size -%}
+          {% render 'pagination', paginate: paginate, style: section.settings.pagination_style, shown: shown %}
+        </div>
+      </hm-facets>
+    {%- endpaginate -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "t:names.collection_grid",
+  "class": "hm-shopify-section",
+  "enabled_on": { "templates": ["collection"] },
+  "settings": [
+    { "type": "checkbox", "id": "show_description", "label": "t:labels.show_description", "default": true },
+    { "type": "checkbox", "id": "show_image", "label": "t:labels.show_collection_image", "default": false },
+    { "type": "range", "id": "per_page", "label": "t:labels.products_per_page", "min": 8, "max": 48, "step": 4, "default": 24 },
+    {
+      "type": "select",
+      "id": "pagination_style",
+      "label": "t:labels.pagination_style",
+      "options": [
+        { "value": "numbered", "label": "t:options.pagination_numbered" },
+        { "value": "load_more", "label": "t:options.pagination_load_more" },
+        { "value": "infinite", "label": "t:options.pagination_infinite" }
+      ],
+      "default": "load_more"
+    },
+    { "type": "checkbox", "id": "show_per_page", "label": "t:labels.show_per_page", "default": true, "info": "t:info.show_per_page" },
+    { "type": "range", "id": "columns", "label": "t:labels.columns_desktop", "min": 2, "max": 5, "step": 1, "default": 4 },
+    {
+      "type": "select",
+      "id": "columns_mobile",
+      "label": "t:labels.columns_mobile",
+      "options": [
+        { "value": "1", "label": "1" },
+        { "value": "2", "label": "2" }
+      ],
+      "default": "2"
+    },
+    { "type": "checkbox", "id": "enable_filtering", "label": "t:labels.enable_filtering", "default": true, "info": "t:info.filters" },
+    { "type": "checkbox", "id": "show_colour_bar", "label": "t:labels.show_colour_bar", "default": true, "info": "t:info.colour_bar" },
+    { "type": "checkbox", "id": "enable_sorting", "label": "t:labels.enable_sorting", "default": true },
+    { "type": "color_scheme", "id": "color_scheme", "label": "t:labels.color_scheme", "default": "scheme-1" }
+  ]
+}
+{% endschema %}

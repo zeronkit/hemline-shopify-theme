@@ -1,0 +1,42 @@
+{%- comment -%} Hemline theme by ZeronKit (https://zeronkit.com). Free theme - not for resale or redistribution. © 2026 ZeronKit. {%- endcomment -%}
+<section class="hm-section color-{{ section.settings.color_scheme }}">
+  <div class="hm-wrap">
+    <header class="hm-section__head hm-section__head--stack">
+      <h1 class="hm-h1">{{ blog.title | escape }}</h1>
+      {%- if blog.all_tags.size > 0 -%}
+        <nav aria-label="{{ 'blogs.tags' | t }}">
+          <ul class="hm-rail__list hm-rail__list--wrap" role="list">
+            <li><a class="hm-rail__pill" href="{{ blog.url }}"{% unless current_tags %} aria-current="page"{% endunless %}>{{ 'blogs.all' | t }}</a></li>
+            {%- for tag in blog.all_tags -%}
+              <li>
+                <a class="hm-rail__pill" href="{{ blog.url }}/tagged/{{ tag | handleize }}"{% if current_tags contains tag %} aria-current="page"{% endif %}>{{ tag | escape }}</a>
+              </li>
+            {%- endfor -%}
+          </ul>
+        </nav>
+      {%- endif -%}
+    </header>
+    {%- paginate blog.articles by section.settings.per_page -%}
+      <ul class="hm-grid hm-grid--3 hm-grid--m1" role="list">
+        {%- for article in blog.articles -%}
+          <li>{% render 'article-card', article: article %}</li>
+        {%- else -%}
+          <li><p>{{ 'blogs.empty' | t }}</p></li>
+        {%- endfor -%}
+      </ul>
+      {% render 'pagination', paginate: paginate %}
+    {%- endpaginate -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "t:names.blog_posts",
+  "class": "hm-shopify-section",
+  "enabled_on": { "templates": ["blog"] },
+  "settings": [
+    { "type": "range", "id": "per_page", "label": "t:labels.posts_per_page", "min": 3, "max": 24, "step": 3, "default": 9 },
+    { "type": "color_scheme", "id": "color_scheme", "label": "t:labels.color_scheme", "default": "scheme-1" }
+  ]
+}
+{% endschema %}

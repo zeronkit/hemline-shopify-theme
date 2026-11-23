@@ -1,0 +1,353 @@
+{
+  "current": "Default",
+  "presets": {
+    "Default": {
+      "color_schemes": {
+        "scheme-1": {
+          "settings": {
+            "background": "#F6F3EE",
+            "text": "#1B1A18",
+            "accent": "#9E3B22",
+            "button": "#1B1A18",
+            "button_label": "#F6F3EE"
+          }
+        },
+        "scheme-2": {
+          "settings": {
+            "background": "#141414",
+            "text": "#F4F1EA",
+            "accent": "#E8B27D",
+            "button": "#F4F1EA",
+            "button_label": "#141414"
+          }
+        },
+        "scheme-3": {
+          "settings": {
+            "background": "#E9E1D3",
+            "text": "#241F19",
+            "accent": "#7A2E1A",
+            "button": "#241F19",
+            "button_label": "#E9E1D3"
+          }
+        },
+        "scheme-4": {
+          "settings": {
+            "background": "#DDE3D5",
+            "text": "#1C2419",
+            "accent": "#3F5A34",
+            "button": "#2E4228",
+            "button_label": "#F3F5EE"
+          }
+        },
+        "scheme-5": {
+          "settings": {
+            "background": "#F6E4DF",
+            "text": "#2A1B1A",
+            "accent": "#9B2F3A",
+            "button": "#2A1B1A",
+            "button_label": "#F6E4DF"
+          }
+        },
+        "scheme-6": {
+          "settings": {
+            "background": "#FFFFFF",
+            "text": "#000000",
+            "accent": "#0033CC",
+            "button": "#000000",
+            "button_label": "#FFFFFF"
+          }
+        }
+      },
+      "body_scheme": "scheme-1",
+      "drawer_scheme": "scheme-1",
+      "type_heading_font": "syne_n7",
+      "type_body_font": "instrument_sans_n4",
+      "heading_scale": 100,
+      "body_scale": 100,
+      "page_width": 1400,
+      "corner_radius": 2,
+      "button_style": "solid",
+      "card_ratio": "0.75",
+      "card_show_secondary": true,
+      "card_show_sizes": true,
+      "card_show_swatches": true,
+      "card_show_vendor": false,
+      "new_badge_days": 21,
+      "cart_type": "drawer",
+      "cart_note": false,
+      "currency_code_enabled": false,
+      "predictive_search": true,
+      "show_credit": true,
+      "palette": "custom",
+      "background_style": "solid",
+      "font_pairing": "custom",
+      "animations": "subtle",
+      "search_popular": "Dresses, Jackets, Sneakers, Bags, Linen",
+      "corner_style": "soft",
+      "card_style": "hang_tag",
+      "spacing": "regular",
+      "type_scale": "balanced"
+    },
+    "Track": {
+      "color_schemes": {
+        "scheme-1": {
+          "settings": {
+            "background": "#F4F5F7",
+            "text": "#0E1116",
+            "accent": "#1F4FE0",
+            "button": "#0E1116",
+            "button_label": "#F4F5F7"
+          }
+        },
+        "scheme-2": {
+          "settings": {
+            "background": "#141414",
+            "text": "#F4F1EA",
+            "accent": "#E8B27D",
+            "button": "#F4F1EA",
+            "button_label": "#141414"
+          }
+        },
+        "scheme-3": {
+          "settings": {
+            "background": "#E3E7EE",
+            "text": "#0E1116",
+            "accent": "#1A3FB8",
+            "button": "#0E1116",
+            "button_label": "#E3E7EE"
+          }
+        },
+        "scheme-4": {
+          "settings": {
+            "background": "#1F4FE0",
+            "text": "#FFFFFF",
+            "accent": "#FFE36E",
+            "button": "#FFFFFF",
+            "button_label": "#1F4FE0"
+          }
+        },
+        "scheme-5": {
+          "settings": {
+            "background": "#F6E4DF",
+            "text": "#2A1B1A",
+            "accent": "#9B2F3A",
+            "button": "#2A1B1A",
+            "button_label": "#F6E4DF"
+          }
+        },
+        "scheme-6": {
+          "settings": {
+            "background": "#FFFFFF",
+            "text": "#000000",
+            "accent": "#0033CC",
+            "button": "#000000",
+            "button_label": "#FFFFFF"
+          }
+        }
+      },
+      "body_scheme": "scheme-1",
+      "drawer_scheme": "scheme-1",
+      "type_heading_font": "archivo_narrow_n7",
+      "type_body_font": "figtree_n4",
+      "heading_scale": 110,
+      "body_scale": 100,
+      "page_width": 1400,
+      "corner_radius": 0,
+      "button_style": "solid",
+      "card_ratio": "0.8",
+      "card_show_secondary": true,
+      "card_show_sizes": true,
+      "card_show_swatches": true,
+      "card_show_vendor": false,
+      "new_badge_days": 21,
+      "cart_type": "drawer",
+      "cart_note": false,
+      "currency_code_enabled": false,
+      "predictive_search": true,
+      "show_credit": true,
+      "palette": "custom",
+      "background_style": "solid",
+      "font_pairing": "custom",
+      "animations": "subtle",
+      "search_popular": "Dresses, Jackets, Sneakers, Bags, Linen",
+      "corner_style": "sharp",
+      "card_style": "framed",
+      "spacing": "tight",
+      "type_scale": "bold"
+    },
+    "Playground": {
+      "color_schemes": {
+        "scheme-1": {
+          "settings": {
+            "background": "#FFFBF2",
+            "text": "#22201C",
+            "accent": "#B03A2E",
+            "button": "#22201C",
+            "button_label": "#FFFBF2"
+          }
+        },
+        "scheme-2": {
+          "settings": {
+            "background": "#141414",
+            "text": "#F4F1EA",
+            "accent": "#E8B27D",
+            "button": "#F4F1EA",
+            "button_label": "#141414"
+          }
+        },
+        "scheme-3": {
+          "settings": {
+            "background": "#FCE9C8",
+            "text": "#22201C",
+            "accent": "#8A2C22",
+            "button": "#22201C",
+            "button_label": "#FCE9C8"
+          }
+        },
+        "scheme-4": {
+          "settings": {
+            "background": "#2F5D50",
+            "text": "#FFFBF2",
+            "accent": "#FCE9C8",
+            "button": "#FFFBF2",
+            "button_label": "#2F5D50"
+          }
+        },
+        "scheme-5": {
+          "settings": {
+            "background": "#F6E4DF",
+            "text": "#2A1B1A",
+            "accent": "#9B2F3A",
+            "button": "#2A1B1A",
+            "button_label": "#F6E4DF"
+          }
+        },
+        "scheme-6": {
+          "settings": {
+            "background": "#FFFFFF",
+            "text": "#000000",
+            "accent": "#0033CC",
+            "button": "#000000",
+            "button_label": "#FFFFFF"
+          }
+        }
+      },
+      "body_scheme": "scheme-1",
+      "drawer_scheme": "scheme-1",
+      "type_heading_font": "outfit_n7",
+      "type_body_font": "dm_sans_n4",
+      "heading_scale": 100,
+      "body_scale": 100,
+      "page_width": 1400,
+      "corner_radius": 12,
+      "button_style": "pill",
+      "card_ratio": "1",
+      "card_show_secondary": true,
+      "card_show_sizes": true,
+      "card_show_swatches": true,
+      "card_show_vendor": false,
+      "new_badge_days": 21,
+      "cart_type": "drawer",
+      "cart_note": false,
+      "currency_code_enabled": false,
+      "predictive_search": true,
+      "show_credit": true,
+      "palette": "custom",
+      "background_style": "solid",
+      "font_pairing": "custom",
+      "animations": "subtle",
+      "search_popular": "Dresses, Jackets, Sneakers, Bags, Linen",
+      "corner_style": "round",
+      "card_style": "minimal",
+      "spacing": "regular",
+      "type_scale": "balanced"
+    },
+    "Noir": {
+      "color_schemes": {
+        "scheme-1": {
+          "settings": {
+            "background": "#121212",
+            "text": "#EDE8DF",
+            "accent": "#D9A46C",
+            "button": "#EDE8DF",
+            "button_label": "#121212"
+          }
+        },
+        "scheme-2": {
+          "settings": {
+            "background": "#EDE8DF",
+            "text": "#121212",
+            "accent": "#8A3A1E",
+            "button": "#121212",
+            "button_label": "#EDE8DF"
+          }
+        },
+        "scheme-3": {
+          "settings": {
+            "background": "#1E1D1B",
+            "text": "#EDE8DF",
+            "accent": "#D9A46C",
+            "button": "#EDE8DF",
+            "button_label": "#1E1D1B"
+          }
+        },
+        "scheme-4": {
+          "settings": {
+            "background": "#26302A",
+            "text": "#EDEFE8",
+            "accent": "#C9D6B8",
+            "button": "#EDEFE8",
+            "button_label": "#26302A"
+          }
+        },
+        "scheme-5": {
+          "settings": {
+            "background": "#2B1F20",
+            "text": "#F3E6E2",
+            "accent": "#E7A7A0",
+            "button": "#F3E6E2",
+            "button_label": "#2B1F20"
+          }
+        },
+        "scheme-6": {
+          "settings": {
+            "background": "#FFFFFF",
+            "text": "#000000",
+            "accent": "#0033CC",
+            "button": "#000000",
+            "button_label": "#FFFFFF"
+          }
+        }
+      },
+      "body_scheme": "scheme-1",
+      "drawer_scheme": "scheme-1",
+      "type_heading_font": "fraunces_n6",
+      "type_body_font": "manrope_n4",
+      "heading_scale": 105,
+      "body_scale": 100,
+      "page_width": 1400,
+      "corner_radius": 0,
+      "button_style": "outline",
+      "card_ratio": "0.6667",
+      "card_show_secondary": true,
+      "card_show_sizes": true,
+      "card_show_swatches": true,
+      "card_show_vendor": false,
+      "new_badge_days": 21,
+      "cart_type": "drawer",
+      "cart_note": false,
+      "currency_code_enabled": false,
+      "predictive_search": true,
+      "show_credit": true,
+      "palette": "custom",
+      "background_style": "solid",
+      "font_pairing": "custom",
+      "animations": "expressive",
+      "search_popular": "Dresses, Jackets, Sneakers, Bags, Linen",
+      "corner_style": "sharp",
+      "card_style": "overlay",
+      "spacing": "airy",
+      "type_scale": "bold"
+    }
+  }
+}

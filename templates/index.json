@@ -1,0 +1,318 @@
+{
+  "sections": {
+    "hero": {
+      "type": "hero",
+      "blocks": {
+        "eyebrow": {
+          "type": "text",
+          "settings": {
+            "text": "<p>New season</p>",
+            "style": "eyebrow",
+            "alignment": "left"
+          }
+        },
+        "heading": {
+          "type": "heading",
+          "settings": {
+            "heading": "Made to be worn together",
+            "size": "display",
+            "tag": "h2",
+            "alignment": "left"
+          }
+        },
+        "button": {
+          "type": "button",
+          "settings": {
+            "label": "Shop new arrivals",
+            "style": "primary",
+            "show_arrow": true
+          }
+        }
+      },
+      "block_order": [
+        "eyebrow",
+        "heading",
+        "button"
+      ],
+      "settings": {
+        "height": "tall",
+        "position": "start-end",
+        "overlay": 30,
+        "frame_label": "Look 01",
+        "eager": true,
+        "color_scheme": "scheme-2"
+      }
+    },
+    "drop": {
+      "type": "drop",
+      "settings": {
+        "status": "live",
+        "drop_code": "D/01",
+        "heading": "New arrivals",
+        "text": "<p>The latest pieces, listed in the order they arrived.</p>",
+        "limit": 4,
+        "columns": 4,
+        "color_scheme": "scheme-1"
+      }
+    },
+    "outfit": {
+      "type": "outfit-builder",
+      "blocks": {
+        "slot-top": {
+          "type": "slot",
+          "settings": {
+            "label": "Top",
+            "required": false
+          }
+        },
+        "slot-bottom": {
+          "type": "slot",
+          "settings": {
+            "label": "Bottom",
+            "required": false
+          }
+        },
+        "slot-shoes": {
+          "type": "slot",
+          "settings": {
+            "label": "Shoes",
+            "required": false
+          }
+        },
+        "slot-accessory": {
+          "type": "slot",
+          "settings": {
+            "label": "Accessory",
+            "required": false
+          }
+        }
+      },
+      "block_order": [
+        "slot-top",
+        "slot-bottom",
+        "slot-shoes",
+        "slot-accessory"
+      ],
+      "settings": {
+        "eyebrow": "Outfit builder",
+        "heading": "Build the whole look",
+        "text": "<p>Choose one piece per row, pick your sizes and add everything to your cart at once.</p>",
+        "button_label": "Add the look to cart",
+        "color_scheme": "scheme-3"
+      }
+    },
+    "colours": {
+      "type": "colour-story",
+      "blocks": {
+        "palette-1": {
+          "type": "palette",
+          "settings": {
+            "name": "Stone and sand",
+            "note": "Warm neutrals that mix with everything",
+            "colour_1": "#D8CBB8",
+            "colour_2": "#A89780",
+            "colour_3": "#6E6253"
+          }
+        },
+        "palette-2": {
+          "type": "palette",
+          "settings": {
+            "name": "Ink and indigo",
+            "note": "Deep blues for every day",
+            "colour_1": "#1E2A44",
+            "colour_2": "#34507A",
+            "colour_3": "#8AA2C4"
+          }
+        },
+        "palette-3": {
+          "type": "palette",
+          "settings": {
+            "name": "Moss and clay",
+            "note": "Earthy greens and terracotta",
+            "colour_1": "#4F5D3A",
+            "colour_2": "#8C9A6B",
+            "colour_3": "#B5653F"
+          }
+        }
+      },
+      "block_order": [
+        "palette-1",
+        "palette-2",
+        "palette-3"
+      ],
+      "settings": {
+        "eyebrow": "Colour stories",
+        "heading": "Shop by palette",
+        "color_scheme": "scheme-1"
+      }
+    },
+    "categories": {
+      "type": "collection-list",
+      "blocks": {
+        "c1": {
+          "type": "collection",
+          "settings": {}
+        },
+        "c2": {
+          "type": "collection",
+          "settings": {}
+        },
+        "c3": {
+          "type": "collection",
+          "settings": {}
+        },
+        "c4": {
+          "type": "collection",
+          "settings": {}
+        },
+        "c5": {
+          "type": "collection",
+          "settings": {}
+        },
+        "c6": {
+          "type": "collection",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "c1",
+        "c2",
+        "c3",
+        "c4",
+        "c5",
+        "c6"
+      ],
+      "settings": {
+        "heading": "Shop by category",
+        "columns": 3,
+        "color_scheme": "scheme-1"
+      }
+    },
+    "story": {
+      "type": "canvas",
+      "blocks": {
+        "image": {
+          "type": "image",
+          "settings": {
+            "ratio": "3 / 4",
+            "width": 100
+          }
+        },
+        "copy": {
+          "type": "group",
+          "settings": {
+            "direction": "column",
+            "align": "center",
+            "gap": 16,
+            "use_scheme": false,
+            "color_scheme": "scheme-3"
+          },
+          "blocks": {
+            "eyebrow": {
+              "type": "text",
+              "settings": {
+                "text": "<p>Our fabrics</p>",
+                "style": "eyebrow",
+                "alignment": "left"
+              }
+            },
+            "heading": {
+              "type": "heading",
+              "settings": {
+                "heading": "Chosen for the long run",
+                "size": "h2",
+                "tag": "h2",
+                "alignment": "left"
+              }
+            },
+            "text": {
+              "type": "text",
+              "settings": {
+                "text": "<p>Tell the story behind a collection, a material or a maker.</p>",
+                "style": "body",
+                "alignment": "left"
+              }
+            },
+            "button": {
+              "type": "button",
+              "settings": {
+                "label": "Shop men",
+                "style": "ghost",
+                "show_arrow": true
+              }
+            }
+          },
+          "block_order": [
+            "eyebrow",
+            "heading",
+            "text",
+            "button"
+          ]
+        }
+      },
+      "block_order": [
+        "image",
+        "copy"
+      ],
+      "settings": {
+        "layout": "split",
+        "gap": 48,
+        "narrow": false,
+        "color_scheme": "scheme-1"
+      }
+    },
+    "newsletter": {
+      "type": "newsletter",
+      "settings": {
+        "heading": "First to know",
+        "text": "<p>Hear about new drops and restocks. No spam, unsubscribe any time.</p>",
+        "color_scheme": "scheme-3"
+      }
+    },
+    "women": {
+      "type": "featured-collection",
+      "settings": {
+        "eyebrow": "Shop women",
+        "heading": "Dresses, shirts and jackets",
+        "limit": 8,
+        "columns": 4,
+        "layout": "rail",
+        "show_view_all": true,
+        "color_scheme": "scheme-1"
+      }
+    },
+    "spotlight": {
+      "type": "featured-product",
+      "settings": {
+        "eyebrow": "Spotlight",
+        "media_limit": 4,
+        "show_dynamic_checkout": true,
+        "color_scheme": "scheme-3"
+      }
+    },
+    "sale": {
+      "type": "featured-collection",
+      "settings": {
+        "eyebrow": "Last chance",
+        "heading": "On sale",
+        "limit": 4,
+        "columns": 4,
+        "layout": "grid",
+        "show_view_all": true,
+        "color_scheme": "scheme-1"
+      }
+    }
+  },
+  "order": [
+    "hero",
+    "drop",
+    "women",
+    "outfit",
+    "colours",
+    "categories",
+    "spotlight",
+    "sale",
+    "story",
+    "newsletter"
+  ]
+}

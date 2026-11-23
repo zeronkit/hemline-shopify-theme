@@ -1,0 +1,69 @@
+{%- comment -%} Hemline theme by ZeronKit (https://zeronkit.com). Free theme - not for resale or redistribution. © 2026 ZeronKit. {%- endcomment -%}
+{%- liquid
+  assign product = section.settings.product
+  if product == blank
+    for candidate in collections.all.products limit: 20
+      if candidate.available
+        assign product = candidate
+        break
+      endif
+    endfor
+  endif
+  assign variant = product.selected_or_first_available_variant
+  assign models = product.media | where: 'media_type', 'model'
+-%}
+<section class="hm-section hm-featured-product color-{{ section.settings.color_scheme }}">
+  {%- if product != blank -%}
+    <hm-product class="hm-wrap hm-product__grid hm-product__grid--feature" data-section-id="{{ section.id }}" data-url="{{ product.url }}">
+      <div class="hm-gallery" data-hm-gallery>
+        <ol class="hm-gallery__sheet hm-gallery__sheet--rail" role="list" aria-label="{{ 'products.media.gallery' | t }}">
+          {%- for media in product.media limit: section.settings.media_limit -%}
+            <li class="hm-gallery__frame" data-media-id="{{ media.id }}">
+              <div class="hm-gallery__media hm-gallery__media--{{ media.media_type }}">
+                {% render 'media', media: media, title: product.title, sizes: '(min-width: 990px) 50vw, 100vw' %}
+              </div>
+            </li>
+          {%- endfor -%}
+        </ol>
+        {%- if models.size > 0 -%}
+          <script type="application/json" data-hm-models>{{ models | json }}</script>
+        {%- endif -%}
+      </div>
+      <div class="hm-product__info">
+        {%- if section.settings.eyebrow != blank -%}<p class="hm-eyebrow">{{ section.settings.eyebrow | escape }}</p>{%- endif -%}
+        <h2 class="hm-h2">{{ product.title | escape }}</h2>
+        <div data-hm-swap="price-featured">{% render 'price', product: product, variant: variant, class: 'hm-price--large' %}</div>
+        <div data-hm-swap="picker-featured" data-variant-id="{{ variant.id }}" data-variant-media="{{ variant.featured_media.id }}">
+          {% render 'variant-picker', product: product, section_id: section.id, style: 'chips' %}
+        </div>
+        <div data-hm-swap="buy-featured">
+          {% render 'buy-form', product: product, variant: variant, section_id: section.id, show_checkout: section.settings.show_dynamic_checkout, show_pickup: false, show_quantity: true %}
+        </div>
+        <a class="hm-button hm-button--text" href="{{ product.url }}">{{ 'products.view_details' | t }} {% render 'icon', name: 'arrow' %}</a>
+      </div>
+    </hm-product>
+  {%- else -%}
+    <div class="hm-wrap hm-product__grid hm-product__grid--feature">
+      <div class="hm-gallery">{{ 'product-apparel-3' | placeholder_svg_tag: 'hm-placeholder' }}</div>
+      <div class="hm-product__info">
+        <h2 class="hm-h2">{{ 'products.placeholder_title' | t }}</h2>
+        <p class="hm-muted">{{ 'products.placeholder_help' | t }}</p>
+      </div>
+    </div>
+  {%- endif -%}
+</section>
+
+{% schema %}
+{
+  "name": "t:names.featured_product",
+  "class": "hm-shopify-section",
+  "settings": [
+    { "type": "product", "id": "product", "label": "t:labels.product" },
+    { "type": "text", "id": "eyebrow", "label": "t:labels.eyebrow", "default": "Spotlight" },
+    { "type": "range", "id": "media_limit", "label": "t:labels.media_to_show", "min": 1, "max": 10, "step": 1, "default": 4, "info": "t:info.featured_media" },
+    { "type": "checkbox", "id": "show_dynamic_checkout", "label": "t:labels.show_dynamic_checkout", "default": true },
+    { "type": "color_scheme", "id": "color_scheme", "label": "t:labels.color_scheme", "default": "scheme-3" }
+  ],
+  "presets": [{ "name": "t:names.featured_product" }]
+}
+{% endschema %}

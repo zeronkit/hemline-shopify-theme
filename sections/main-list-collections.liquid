@@ -1,0 +1,26 @@
+{%- comment -%} Hemline theme by ZeronKit (https://zeronkit.com). Free theme - not for resale or redistribution. © 2026 ZeronKit. {%- endcomment -%}
+<section class="hm-section color-{{ section.settings.color_scheme }}">
+  <div class="hm-wrap">
+    <h1 class="hm-h1">{{ 'collections.all_title' | t }}</h1>
+    {%- paginate collections by 24 -%}
+      <ul class="hm-grid hm-grid--{{ section.settings.columns }} hm-grid--m2" role="list">
+        {%- for collection in collections -%}
+          <li>{% render 'collection-card', collection: collection %}</li>
+        {%- endfor -%}
+      </ul>
+      {% render 'pagination', paginate: paginate %}
+    {%- endpaginate -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "t:names.collections_list",
+  "class": "hm-shopify-section",
+  "enabled_on": { "templates": ["list-collections"] },
+  "settings": [
+    { "type": "range", "id": "columns", "label": "t:labels.columns_desktop", "min": 2, "max": 5, "step": 1, "default": 3 },
+    { "type": "color_scheme", "id": "color_scheme", "label": "t:labels.color_scheme", "default": "scheme-1" }
+  ]
+}
+{% endschema %}

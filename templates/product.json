@@ -1,0 +1,99 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-product",
+      "blocks": {
+        "title": {
+          "type": "title",
+          "settings": {
+            "show_vendor": false
+          }
+        },
+        "price": {
+          "type": "price",
+          "settings": {}
+        },
+        "picker": {
+          "type": "variant_picker",
+          "settings": {
+            "style": "chips"
+          }
+        },
+        "fit": {
+          "type": "fit",
+          "settings": {}
+        },
+        "buy": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_quantity": true,
+            "show_dynamic_checkout": true,
+            "show_pickup": true
+          }
+        },
+        "description": {
+          "type": "description",
+          "settings": {}
+        },
+        "complementary": {
+          "type": "complementary",
+          "settings": {
+            "heading": "Wear it with",
+            "limit": 3
+          }
+        },
+        "care": {
+          "type": "collapsible",
+          "settings": {
+            "heading": "Materials and care",
+            "source": "materials"
+          }
+        },
+        "shipping": {
+          "type": "collapsible",
+          "settings": {
+            "heading": "Shipping and returns",
+            "source": "shipping"
+          }
+        },
+        "fit_tab": {
+          "type": "collapsible",
+          "settings": {
+            "heading": "Fit",
+            "source": "fit"
+          }
+        }
+      },
+      "block_order": [
+        "title",
+        "price",
+        "picker",
+        "fit",
+        "buy",
+        "description",
+        "complementary",
+        "care",
+        "fit_tab",
+        "shipping"
+      ],
+      "settings": {
+        "color_scheme": "scheme-1",
+        "gallery_layout": "sheet",
+        "sticky_info": true
+      }
+    },
+    "related": {
+      "type": "product-recommendations",
+      "settings": {
+        "heading": "You may also like",
+        "limit": 4,
+        "columns": 4,
+        "color_scheme": "scheme-1"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "related"
+  ]
+}

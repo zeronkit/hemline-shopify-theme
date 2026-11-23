@@ -1,0 +1,34 @@
+{%- comment -%} Hemline theme by ZeronKit (https://zeronkit.com). Free theme - not for resale or redistribution. © 2026 ZeronKit. {%- endcomment -%}
+<section class="hm-section color-{{ section.settings.color_scheme }}">
+  <div class="hm-wrap hm-wrap--narrow">
+    <h1 class="hm-h1">{{ page.title | escape }}</h1>
+    <div class="hm-rte">{{ page.content }}</div>
+    {%- comment -%} A page with the handle contact gets a working form even on the default page template. {%- endcomment -%}
+    {%- if page.handle == 'contact' and template.suffix != 'contact' -%}
+      {%- form 'contact', class: 'hm-form hm-contact__form' -%}
+        {%- if form.posted_successfully? -%}
+          <p class="hm-notice hm-notice--success" role="status">{% render 'icon', name: 'check' %} {{ 'contact.success' | t }}</p>
+        {%- elsif form.errors -%}
+          <div class="hm-notice hm-notice--error" role="alert" id="PageContact-errors">{{ form.errors | default_errors }}</div>
+        {%- endif -%}
+        <div class="hm-contact__fields">
+          {% render 'contact-field', type: 'name', id: 'PageContact-name', form: form, form_id: 'PageContact', width: 'half' %}
+          {% render 'contact-field', type: 'email', id: 'PageContact-email', form: form, form_id: 'PageContact', width: 'half', required: true %}
+          {% render 'contact-field', type: 'message', id: 'PageContact-message', form: form, form_id: 'PageContact', width: 'full', required: true %}
+        </div>
+        <button type="submit" class="hm-button hm-button--primary">{{ 'contact.send' | t }}</button>
+      {%- endform -%}
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "t:names.page",
+  "class": "hm-shopify-section",
+  "enabled_on": { "templates": ["page"] },
+  "settings": [
+    { "type": "color_scheme", "id": "color_scheme", "label": "t:labels.color_scheme", "default": "scheme-1" }
+  ]
+}
+{% endschema %}
