@@ -2,9 +2,56 @@
 
 ![Hemline, a free Shopify theme for fashion](docs/images/hemline-free-theme-en.png)
 
-**Full guide with screenshots:** [English](docs/guide.md) | [العربية](docs/guide-ar.md)  
-**Download:** [hemline-1.1.0.zip](https://github.com/zeronkit/hemline-shopify-theme/releases/latest/download/hemline-1.1.0.zip)  
-**Website:** [zeronkit.com/hemline](https://zeronkit.com/hemline/)
+<h2 align="center">📘 The full guide, step by step, with 85 screenshots</h2>
+
+<p align="center">
+<a href="docs/guide.md"><img alt="Read the full guide in English" src="https://img.shields.io/badge/Full%20guide-English-ff7a52?style=for-the-badge"></a>
+&nbsp;
+<a href="docs/guide-ar.md"><img alt="Read the full guide in Arabic" src="https://img.shields.io/badge/%D8%A7%D9%84%D8%B4%D8%B1%D8%AD%20%D8%A7%D9%84%D9%83%D8%A7%D9%85%D9%84-%D8%A7%D9%84%D8%B9%D8%B1%D8%A8%D9%8A%D8%A9-121110?style=for-the-badge"></a>
+&nbsp;
+<a href="https://github.com/zeronkit/hemline-shopify-theme/releases/latest/download/hemline-1.1.0.zip"><img alt="Download Hemline" src="https://img.shields.io/badge/Download-hemline--1.1.0.zip-2ea043?style=for-the-badge"></a>
+</p>
+
+<table><tr><td valign="top" width="50%">
+
+### Guide contents (English)
+
+1. [1. What Hemline is](docs/guide.md#1-what-hemline-is)
+2. [2. Installing and updating](docs/guide.md#2-installing-and-updating)
+3. [3. Preparing your store content](docs/guide.md#3-preparing-your-store-content)
+4. [4. Theme settings](docs/guide.md#4-theme-settings)
+5. [5. Header group](docs/guide.md#5-header-group)
+6. [6. Home page sections](docs/guide.md#6-home-page-sections)
+7. [7. Collection and search pages](docs/guide.md#7-collection-and-search-pages)
+8. [8. Product page](docs/guide.md#8-product-page)
+9. [9. Other pages](docs/guide.md#9-other-pages)
+10. [10. Footer group](docs/guide.md#10-footer-group)
+11. [11. Languages, Arabic and right-to-left](docs/guide.md#11-languages-arabic-and-right-to-left)
+12. [12. Performance, accessibility, help](docs/guide.md#12-performance-accessibility-help)
+
+</td><td valign="top" width="50%" dir="rtl">
+
+### فهرس الشرح (العربية)
+
+1. [1. ما هو Hemline](docs/guide-ar.md#1-ما-هو-hemline)
+2. [2. التثبيت والتحديث](docs/guide-ar.md#2-التثبيت-والتحديث)
+3. [3. تجهيز محتوى المتجر](docs/guide-ar.md#3-تجهيز-محتوى-المتجر)
+4. [4. إعدادات القالب](docs/guide-ar.md#4-إعدادات-القالب)
+5. [5. مجموعة الترويسة](docs/guide-ar.md#5-مجموعة-الترويسة)
+6. [6. أقسام الصفحة الرئيسية](docs/guide-ar.md#6-أقسام-الصفحة-الرئيسية)
+7. [7. صفحات المجموعات والبحث](docs/guide-ar.md#7-صفحات-المجموعات-والبحث)
+8. [8. صفحة المنتج](docs/guide-ar.md#8-صفحة-المنتج)
+9. [9. صفحات أخرى](docs/guide-ar.md#9-صفحات-أخرى)
+10. [10. مجموعة التذييل](docs/guide-ar.md#10-مجموعة-التذييل)
+11. [11. اللغات والعربية والكتابة من اليمين إلى اليسار](docs/guide-ar.md#11-اللغات-والعربية-والكتابة-من-اليمين-إلى-اليسار)
+12. [12. الأداء وإمكانية الوصول والمساعدة](docs/guide-ar.md#12-الأداء-وإمكانية-الوصول-والمساعدة)
+
+</td></tr></table>
+
+The same guide is also on the website: [zeronkit.com/hemline-guide](https://zeronkit.com/hemline-guide/) and [zeronkit.com/hemline-guide-ar](https://zeronkit.com/hemline-guide-ar/). Theme page: [zeronkit.com/hemline](https://zeronkit.com/hemline/).
+
+![هيملاين، قالب شوبيفاي مجاني للأزياء](docs/images/hemline-free-theme-ar.png)
+
 
 
 Hemline is a free Shopify theme for clothing, shoes, bags and accessories. It also suits kids, sport and pet clothing. Made by [ZeronKit](https://zeronkit.com).
