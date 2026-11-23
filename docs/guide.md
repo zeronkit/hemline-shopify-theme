@@ -938,7 +938,7 @@ When Translate & Adapt translates option values, colour swatches still show the 
 ### 12.4 Support
 
 - Support is best-effort and on request only. It is not guaranteed.
-- Contact: info@zeronkit.com or https://zeronkit.com/contact.
+- Contact: info@zeronkit.com.
 - Updates are released when needed and when time allows, with no schedule.
 
 ### 12.5 Changelog

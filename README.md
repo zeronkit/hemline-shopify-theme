@@ -95,7 +95,7 @@ Uploaded themes do not update by themselves. Duplicate your theme first, then up
 
 ## Support
 
-Free, provided as is, with no warranty. Support is best-effort and on request only through https://zeronkit.com/contact or info@zeronkit.com. Updates are released when needed and when time allows, with no schedule.
+Free, provided as is, with no warranty. Support is best-effort and on request only through mailto:info@zeronkit.com or info@zeronkit.com. Updates are released when needed and when time allows, with no schedule.
 
 ## Licence
 
