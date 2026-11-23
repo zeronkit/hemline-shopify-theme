@@ -1,5 +1,12 @@
 # Hemline, a free Shopify theme by ZeronKit
 
+![Hemline, a free Shopify theme for fashion](docs/images/hemline-free-theme-en.png)
+
+**Full guide with screenshots:** [English](docs/guide.md) | [العربية](docs/guide-ar.md)  
+**Download:** [hemline-1.1.0.zip](https://github.com/zeronkit/hemline-shopify-theme/releases/latest/download/hemline-1.1.0.zip)  
+**Website:** [zeronkit.com/hemline](https://zeronkit.com/hemline/)
+
+
 Hemline is a free Shopify theme for clothing, shoes, bags and accessories. It also suits kids, sport and pet clothing. Made by [ZeronKit](https://zeronkit.com).
 
 **Source-available, free, not for resale.** This repository is not open source and is not under the GPL. You may use and change Hemline on stores you own or run. You may not resell, redistribute, sublicense or upload it to theme marketplaces. See [LICENSE](LICENSE).
